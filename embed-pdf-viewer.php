@@ -19,8 +19,11 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-add_filter( 'media_send_to_editor', array( Embed_PDF_Viewer::instance(), 'embed_pdf_media_editor' ), 20, 3 );
-wp_embed_register_handler( 'oembed_pdf', '#(^(https?)\:\/\/.+\.pdf$)#i', array( Embed_PDF_Viewer::instance(), 'oembed_pdf' ) );
+add_filter( 'media_send_to_editor', array( Embed_PDF_Viewer::instance(), 'embed_pdf_media_editor' ), 20, 2 );
+wp_embed_register_handler( 'oembed_pdf_viewer', '#(^(https?)\:\/\/.+\.pdf$)#i', array(
+	Embed_PDF_Viewer::instance(),
+	'oembed_pdf_viewer',
+) );
 
 /**
  * Class Embed_PDF_Viewer
@@ -72,19 +75,20 @@ class Embed_PDF_Viewer {
 	 * @param      $matches
 	 * @param      $atts
 	 * @param      $url
-	 * @param null $rawattr
 	 *
 	 * @return mixed|void
 	 */
-	public function oembed_pdf( $matches, $atts, $url, $rawattr = null ) {
+	public function oembed_pdf_viewer( $matches, $atts, $url ) {
+		// exit early.
+		if ( empty( $matches ) ) {
+			return false;
+		}
+
 		$default = array(
 			'height' => 600,
 			'width'  => 800,
-			'border' => 0,
-			'style'  => '',
-			'title'  => '',
+			'title'  => null,
 			'class'  => 'pdf',
-			'id'     => null,
 		);
 
 		$atts = array_merge( $default, $atts );
@@ -96,27 +100,12 @@ class Embed_PDF_Viewer {
 		}
 
 		$embed = '<iframe src="https://docs.google.com/viewer?url=' . urlencode( $url ) . '&amp;embedded=true" class="' . $atts['class'] . '"';
-
-		if ( $atts['id'] ) {
-			$embed .= ' id="' . $atts['id'] . '"';
-		}
-
-		$embed .= ' frameborder="' . $atts['border'] . '"';
-
-		if ( 0 !== $atts['border'] ) {
-			$atts['border'] .= 'px';
-		}
-
-		if ( $atts['style'] ) {
-			$embed .= ' style="height:' . $atts['height'] . 'px;width:' . $atts['width'] . 'px;border:' . $atts['border'] . ';' . $atts['style'] . '"';
-		} else {
-			$embed .= ' style="height:' . $atts['height'] . 'px;width:' . $atts['width'] . 'px;border:' . $atts['border'] . '"';
-		}
-
+		$embed .= ' frameborder="0"';
+		$embed .= ' style="height:' . $atts['height'] . 'px;width:' . $atts['width'] . 'px;"';
 		$embed .= ' title="' . $atts['title'] . '"></iframe>';
 		$embed .= '<a href="' . $url . '">' . $atts['title'] . '</a>';
 
-		return apply_filters( 'embed_pdf', $embed, $matches, $atts, $url, $rawattr );
+		return $embed;
 	}
 
 }
