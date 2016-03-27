@@ -79,14 +79,14 @@ class Embed_PDF_Viewer {
 	 * @return string
 	 */
 	public function oembed_pdf_viewer( $matches, $atts, $url ) {
-		$default = array(
+		$attachment = get_post( $this->get_attachment_id_by_url( $url ) );
+		$default    = array(
 			'height' => 600,
 			'width'  => 800,
-			'title'  => null,
+			'title'  => $attachment->post_title,
 			'class'  => 'pdf',
 		);
-
-		$atts = array_merge( $default, $atts );
+		$atts       = array_merge( $default, $atts );
 
 		if ( empty( $atts['title'] ) ) {
 			$parsed_url    = parse_url( $url, PHP_URL_PATH );
@@ -101,6 +101,22 @@ class Embed_PDF_Viewer {
 		$embed .= '<a href="' . $url . '">' . $atts['title'] . '</a>';
 
 		return $embed;
+	}
+
+	/**
+	 * Get attachment id by url. Thanks Pippin.
+	 *
+	 * @link  https://pippinsplugins.com/retrieve-attachment-id-from-image-url/
+	 *
+	 * @param $url
+	 *
+	 * @return mixed
+	 */
+	private function get_attachment_id_by_url( $url ) {
+		global $wpdb;
+		$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid='%s';", $url ) );
+
+		return $attachment[0];
 	}
 
 }
