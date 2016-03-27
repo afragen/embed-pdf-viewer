@@ -60,7 +60,7 @@ class Embed_PDF_Viewer {
 		$attachment = get_post( $id );
 		$out        = "";
 		if ( 'application/pdf' === $attachment->post_mime_type ) {
-			$out .= '<iframe src="https://docs.google.com/gview?url=' . $attachment->guid . '&embedded=true" style="width:100%; height:500px;" frameborder="0"></iframe>';
+			$out .= '<iframe src="https://docs.google.com/gview?url=' . urlencode( $attachment->guid ) . '&embedded=true" style="width:100%; height:500px;" frameborder="0"></iframe>';
 		}
 
 		return $out . $html . "\n\n";
