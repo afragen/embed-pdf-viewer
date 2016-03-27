@@ -15,3 +15,5 @@ Embed a PDF from the Media Library or via oEmbed in a Google Doc Viewer.
 Embed a PDF from the Media Library or via oEmbed in a Google Doc Viewer.
 
 Inspired by [Embed PDF](https://wordpress.org/plugins/dirtysuds-embed-pdf/) and [RV Embed PDF](https://wordpress.org/plugins/rv-embed-pdf/).
+
+Pull requests are welcome against the `develop` branch.
