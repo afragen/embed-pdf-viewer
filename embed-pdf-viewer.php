@@ -79,14 +79,15 @@ class Embed_PDF_Viewer {
 	 * @return string
 	 */
 	public function oembed_pdf_viewer( $matches, $atts, $url ) {
-		$attachment = get_post( $this->get_attachment_id_by_url( $url ) );
-		$default    = array(
-			'height' => 600,
+		$attachment     = get_post( $this->get_attachment_id_by_url( $url ) );
+		$default        = array(
+			'height' => 500,
 			'width'  => 800,
 			'title'  => $attachment->post_title,
 			'class'  => 'pdf',
 		);
-		$atts       = array_merge( $default, $atts );
+		$atts           = array_merge( $default, $atts );
+		$atts['height'] = ( $atts['height'] / 2 );
 
 		if ( empty( $atts['title'] ) ) {
 			$parsed_url    = parse_url( $url, PHP_URL_PATH );
