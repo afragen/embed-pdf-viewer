@@ -72,18 +72,13 @@ class Embed_PDF_Viewer {
 	/**
 	 * Create oEmbed code.
 	 *
-	 * @param      $matches
-	 * @param      $atts
-	 * @param      $url
+	 * @param $matches
+	 * @param $atts
+	 * @param $url
 	 *
-	 * @return mixed|void
+	 * @return string
 	 */
 	public function oembed_pdf_viewer( $matches, $atts, $url ) {
-		// exit early.
-		if ( empty( $matches ) ) {
-			return false;
-		}
-
 		$default = array(
 			'height' => 600,
 			'width'  => 800,
