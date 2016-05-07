@@ -5,7 +5,7 @@
  * Description:       Embed a PDF from the Media Library or via oEmbed in a Google Doc Viewer.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           0.1
+ * Version:           0.2
  * License:           GPLv2+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.html
  * GitHub Plugin URI: https://github.com/afragen/embed-pdf-viewer
@@ -54,52 +54,68 @@ class Embed_PDF_Viewer {
 	/**
 	 * Create media library insertion code.
 	 *
-	 * @param $html
-	 * @param $id
+	 * @param string  $html an href link to the media.
+	 * @param integer $id   post_id.
 	 *
 	 * @return string
 	 */
 	public function embed_pdf_media_editor( $html, $id ) {
-		$attachment = get_post( $id );
-		$out        = "";
-		if ( 'application/pdf' === $attachment->post_mime_type ) {
-			$out .= '<iframe src="https://docs.google.com/viewer?url=' . urlencode( $attachment->guid ) . '&embedded=true" style="width:100%; height:500px;" frameborder="0"></iframe>';
-		}
+		$post = get_post( $id );
 
-		return $out . $html . "\n\n";
+		return $this->create_output( $post ) . "\n\n";
 	}
 
 	/**
 	 * Create oEmbed code.
 	 *
-	 * @param $matches
-	 * @param $atts
-	 * @param $url
+	 * @param array  $matches
+	 * @param array  $atts array of media height/width.
+	 * @param string $url  URI for media file.
 	 *
 	 * @return string
 	 */
 	public function oembed_pdf_viewer( $matches, $atts, $url ) {
-		$attachment     = get_post( $this->get_attachment_id_by_url( $url ) );
-		$default        = array(
-			'height' => 500,
-			'width'  => 800,
-			'title'  => $attachment->post_title,
-			'class'  => 'pdf',
-		);
-		$atts           = array_merge( $default, $atts );
-		$atts['height'] = ( $atts['height'] / 2 );
+		$post = get_post( $this->get_attachment_id_by_url( $url ) );
 
-		if ( empty( $atts['title'] ) ) {
-			$parsed_url    = parse_url( $url, PHP_URL_PATH );
-			$filename      = pathinfo( $parsed_url );
-			$atts['title'] = preg_replace( '/(-|_)/', ' ', $filename['filename'] );
+		return $this->create_output( $post, $atts );
+	}
+
+	/**
+	 * Create output for Google Doc Viewer and href link to file.
+	 *
+	 * @param \WP_Post $post
+	 * @param array    $atts
+	 *
+	 * @return bool|string
+	 */
+	private function create_output( WP_Post $post, $atts = array() ) {
+		if ( 'application/pdf' !== $post->post_mime_type ) {
+			return false;
 		}
 
-		$embed = '<iframe src="https://docs.google.com/viewer?url=' . urlencode( $url ) . '&amp;embedded=true" class="' . $atts['class'] . '"';
-		$embed .= ' frameborder="0"';
-		$embed .= ' style="height:' . $atts['height'] . 'px;width:' . $atts['width'] . 'px;"';
-		$embed .= ' title="' . $atts['title'] . '"></iframe>';
-		$embed .= '<a href="' . $url . '">' . $atts['title'] . '</a>';
+		$default = array(
+			'height' => 500,
+			'width'  => 800,
+			'title'  => $post->post_title,
+		);
+
+		$atts = array_merge( $default, $atts );
+		if ( ! empty( $atts ) ) {
+			$atts['height'] = ( $atts['height'] / 2 );
+		}
+
+		/*
+		 * Create title from filename.
+		 */
+		if ( empty( $atts['title'] ) ) {
+			$atts['title'] = ucwords( preg_replace( '/(-|_)/', ' ', $post->post_name ) );
+		}
+
+		$embed = '<iframe src="https://docs.google.com/viewer?url=' . urlencode( $post->guid );
+		$embed .= '&amp;embedded=true" frameborder="0" ';
+		$embed .= 'style="height:' . $atts['height'] . 'px;width:' . $atts['width'] . 'px;" ';
+		$embed .= 'title="' . $atts['title'] . '"></iframe>' . "\n";
+		$embed .= '<a href="' . $post->guid . '">' . $atts['title'] . '</a>';
 
 		return $embed;
 	}
@@ -109,7 +125,7 @@ class Embed_PDF_Viewer {
 	 *
 	 * @link  https://pippinsplugins.com/retrieve-attachment-id-from-image-url/
 	 *
-	 * @param $url
+	 * @param string $url URI of attachment.
 	 *
 	 * @return mixed
 	 */
