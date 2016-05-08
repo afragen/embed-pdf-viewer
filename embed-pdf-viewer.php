@@ -99,10 +99,10 @@ class Embed_PDF_Viewer {
 			'title'  => $post->post_title,
 		);
 
-		$atts = array_merge( $default, $atts );
 		if ( ! empty( $atts ) ) {
 			$atts['height'] = ( $atts['height'] / 2 );
 		}
+		$atts = array_merge( $default, $atts );
 
 		/*
 		 * Create title from filename.
