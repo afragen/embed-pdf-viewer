@@ -24,8 +24,9 @@ Development on [GitHub](https://github.com/afragen/embed-pdf-viewer). Pull reque
 
 == Changelog ==
 
-= 0.2 =
+= 1.0 =
 * refactor to put embed code in one function
+* add assets
 
 = 0.1 =
 * initial commit
