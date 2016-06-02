@@ -2,10 +2,10 @@
 /**
  * Plugin Name:       Embed PDF Viewer
  * Plugin URI:        https://github.com/afragen/embed-pdf-viewer
- * Description:       Embed a PDF from the Media Library or via oEmbed in a Google Doc Viewer.
+ * Description:       Embed a PDF from the Media Library or via oEmbed into a Google Doc Viewer.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           1.0
+ * Version:           1.0.1
  * License:           GPLv2+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.html
  * GitHub Plugin URI: https://github.com/afragen/embed-pdf-viewer
@@ -86,7 +86,7 @@ class Embed_PDF_Viewer {
 	 * Create output for Google Doc Viewer and href link to file.
 	 *
 	 * @param \WP_Post $post
-	 * @param array    $atts
+	 * @param array    $atts array of media height/width.
 	 *
 	 * @return bool|string
 	 */
