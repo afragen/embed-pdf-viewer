@@ -1,3 +1,6 @@
+#### 1.1
+* bugfix for not returning media item when not PDF, Bad Andy :(
+
 #### 1.0.1
 * add to DocBlocks
 
