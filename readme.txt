@@ -24,6 +24,9 @@ Development on [GitHub](https://github.com/afragen/embed-pdf-viewer). Pull reque
 
 == Changelog ==
 
+= 1.1 =
+* bugfix for not returning media item when not PDF, Bad Andy :(
+
 = 1.0.1 =
 * add to DocBlocks
 

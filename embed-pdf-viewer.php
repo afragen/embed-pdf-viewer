@@ -5,7 +5,7 @@
  * Description:       Embed a PDF from the Media Library or via oEmbed into a Google Doc Viewer.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           1.0.1
+ * Version:           1.1
  * License:           GPLv2+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.html
  * GitHub Plugin URI: https://github.com/afragen/embed-pdf-viewer
@@ -64,7 +64,7 @@ class Embed_PDF_Viewer {
 	public function embed_pdf_media_editor( $html, $id ) {
 		$post = get_post( $id );
 
-		return $this->create_output( $post ) . "\n\n";
+		return $this->create_output( $post, $html ) . "\n\n";
 	}
 
 	/**
@@ -92,7 +92,7 @@ class Embed_PDF_Viewer {
 	 */
 	private function create_output( WP_Post $post, $atts = array() ) {
 		if ( 'application/pdf' !== $post->post_mime_type ) {
-			return false;
+			return $atts;
 		}
 
 		$default = array(
