@@ -5,7 +5,7 @@
  * Description:       Embed a PDF from the Media Library or via oEmbed into a Google Doc Viewer.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           1.1
+ * Version:           1.1.1
  * License:           GPLv2+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.html
  * GitHub Plugin URI: https://github.com/afragen/embed-pdf-viewer
@@ -37,7 +37,7 @@ class Embed_PDF_Viewer {
 	 *
 	 * @var bool
 	 */
-	protected static $object = false;
+	private static $instance = false;
 
 	/**
 	 * Create singleton.
@@ -46,11 +46,11 @@ class Embed_PDF_Viewer {
 	 */
 	public static function instance() {
 		$class = __CLASS__;
-		if ( false === self::$object ) {
-			self::$object = new $class();
+		if ( false === self::$instance ) {
+			self::$instance = new $class();
 		}
 
-		return self::$object;
+		return self::$instance;
 	}
 
 	/**
@@ -85,8 +85,9 @@ class Embed_PDF_Viewer {
 	/**
 	 * Create output for Google Doc Viewer and href link to file.
 	 *
-	 * @param \WP_Post $post
-	 * @param array    $atts array of media height/width.
+	 * @param \WP_Post     $post
+	 * @param array|string $atts    array of media height/width or
+	 *                              href to media library asset.
 	 *
 	 * @return bool|string
 	 */
@@ -101,7 +102,12 @@ class Embed_PDF_Viewer {
 			'title'  => $post->post_title,
 		);
 
-		if ( ! empty( $atts ) ) {
+		/*
+		 * Ensure $atts isn't the href.
+		 */
+		$atts = is_array( $atts ) ? $atts : array();
+
+		if ( isset( $atts['height'] ) ) {
 			$atts['height'] = ( $atts['height'] / 2 );
 		}
 		$atts = array_merge( $default, $atts );

@@ -1,3 +1,8 @@
+#### 1.1.1
+* rename instance variable to `$instance` and make private
+* update DocBlocks
+* ensure `$atts` is an array
+
 #### 1.1
 * bugfix for not returning media item when not PDF, Bad Andy :(
 
