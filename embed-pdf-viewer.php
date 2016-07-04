@@ -45,8 +45,9 @@ class Embed_PDF_Viewer {
 	 * @return bool
 	 */
 	public static function instance() {
+		$class = __CLASS__;
 		if ( false === self::$instance ) {
-			self::$instance = new self();
+			self::$instance = new $class();
 		}
 
 		return self::$instance;
