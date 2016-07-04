@@ -24,6 +24,9 @@ Development on [GitHub](https://github.com/afragen/embed-pdf-viewer). Pull reque
 
 == Changelog ==
 
+= 1.1.2 =
+* simplify `instance()` just a little more
+
 = 1.1.1 =
 * rename instance variable to `$instance` and make private
 * update DocBlocks
