@@ -2,10 +2,10 @@
 /**
  * Plugin Name:       Embed PDF Viewer
  * Plugin URI:        https://github.com/afragen/embed-pdf-viewer
- * Description:       Embed a PDF from the Media Library or via oEmbed into a Google Doc Viewer.
+ * Description:       Embed a PDF from the Media Library or directly via oEmbed into a Google Doc Viewer.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           1.1.2
+ * Version:           1.2.0
  * License:           GPLv2+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.html
  * GitHub Plugin URI: https://github.com/afragen/embed-pdf-viewer
@@ -53,7 +53,7 @@ class Embed_PDF_Viewer {
 	}
 
 	/**
-	 * Create media library insertion code.
+	 * Insert URL to PDF from Media Library, then render as oEmbed.
 	 *
 	 * @param string  $html an href link to the media.
 	 * @param integer $id   post_id.
@@ -63,7 +63,7 @@ class Embed_PDF_Viewer {
 	public function embed_pdf_media_editor( $html, $id ) {
 		$post = get_post( $id );
 
-		return $this->create_output( $post, $html ) . "\n\n";
+		return $post->guid . "\n\n";
 	}
 
 	/**
@@ -76,7 +76,17 @@ class Embed_PDF_Viewer {
 	 * @return string
 	 */
 	public function oembed_pdf_viewer( $matches, $atts, $url ) {
-		$post = get_post( $this->get_attachment_id_by_url( $url ) );
+		if ( ! empty( $this->get_attachment_id_by_url( $url ) ) ) {
+			$post = get_post( $this->get_attachment_id_by_url( $url ) );
+		} else {
+			/*
+			 * URL is from outside of the Media Library.
+			 */
+			$post                 = new WP_Post( null );
+			$post->guid           = $matches[0];
+			$post->post_mime_type = 'application/pdf';
+			$post->post_name      = preg_replace( '/\.pdf$/', '', basename( $matches[0] ) );
+		}
 
 		return $this->create_output( $post, $atts );
 	}

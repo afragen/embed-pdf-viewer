@@ -1,3 +1,10 @@
+#### 1.2.0
+* inserting a PDF from the Media Library now simply inserts the URL for oEmbed
+* oEmbed a PDF from any source
+
+#### 1.1.2
+* simplify `instance()` just a little more
+
 #### 1.1.1
 * rename instance variable to `$instance` and make private
 * update DocBlocks
