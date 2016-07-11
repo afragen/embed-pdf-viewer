@@ -9,10 +9,10 @@
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
   
 
-Embed a PDF from the Media Library or via oEmbed into a Google Doc Viewer.
+Embed a PDF from the Media Library or elsewhere via oEmbed into a Google Doc Viewer.
 
 ## Description
-Embed a PDF from the Media Library or via oEmbed into a Google Doc Viewer.
+Embed a PDF from the Media Library or elsewhere via oEmbed into a Google Doc Viewer. The URL only has to be reachable link.
 
 Inspired by [Embed PDF](https://wordpress.org/plugins/dirtysuds-embed-pdf/) and [RV Embed PDF](https://wordpress.org/plugins/rv-embed-pdf/).
 
