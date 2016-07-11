@@ -3,7 +3,7 @@ Contributors: afragen
 Tags: pdf, embed, oembed, viewer
 Requires at least: 4.0
 Tested up to: 4.6
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPL v2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,9 @@ Development on [GitHub](https://github.com/afragen/embed-pdf-viewer). Pull reque
 1. Activate the plugin.
 
 == Changelog ==
+
+= 1.2.1 =
+* fixed a couple of PHP warnings
 
 = 1.2.0 =
 * inserting a PDF from the Media Library now simply inserts the URL for oEmbed
