@@ -76,7 +76,17 @@ class Embed_PDF_Viewer {
 	 * @return string
 	 */
 	public function oembed_pdf_viewer( $matches, $atts, $url ) {
-		$post = get_post( $this->get_attachment_id_by_url( $url ) );
+		if ( ! empty( $this->get_attachment_id_by_url( $url ) ) ) {
+			$post = get_post( $this->get_attachment_id_by_url( $url ) );
+		} else {
+			/*
+			 * URL is from outside of the Media Library.
+			 */
+			$post                 = new WP_Post( null );
+			$post->guid           = $matches[0];
+			$post->post_mime_type = 'application/pdf';
+			$post->post_name      = preg_replace( '/\.pdf$/', '', basename( $matches[0] ) );
+		}
 
 		return $this->create_output( $post, $atts );
 	}
