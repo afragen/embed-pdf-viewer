@@ -53,7 +53,7 @@ class Embed_PDF_Viewer {
 	}
 
 	/**
-	 * Create media library insertion code.
+	 * Insert URL to PDF from Media Library, then render as oEmbed.
 	 *
 	 * @param string  $html an href link to the media.
 	 * @param integer $id   post_id.
@@ -63,7 +63,7 @@ class Embed_PDF_Viewer {
 	public function embed_pdf_media_editor( $html, $id ) {
 		$post = get_post( $id );
 
-		return $this->create_output( $post, $html ) . "\n\n";
+		return $post->guid . "\n\n";
 	}
 
 	/**
