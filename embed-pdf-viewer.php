@@ -82,7 +82,7 @@ class Embed_PDF_Viewer {
 			/*
 			 * URL is from outside of the Media Library.
 			 */
-			$post                 = new WP_Post( null );
+			$post                 = new WP_Post( new stdClass() );
 			$post->guid           = $matches[0];
 			$post->post_mime_type = 'application/pdf';
 			$post->post_name      = preg_replace( '/\.pdf$/', '', basename( $matches[0] ) );
@@ -149,6 +149,10 @@ class Embed_PDF_Viewer {
 	private function get_attachment_id_by_url( $url ) {
 		global $wpdb;
 		$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid='%s';", $url ) );
+
+		if ( empty( $attachment ) ) {
+			return null;
+		}
 
 		return $attachment[0];
 	}

@@ -1,3 +1,6 @@
+#### 1.2.1
+* fixed a couple of PHP warnings
+
 #### 1.2.0
 * inserting a PDF from the Media Library now simply inserts the URL for oEmbed
 * oEmbed a PDF from any source
