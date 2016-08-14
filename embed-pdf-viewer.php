@@ -82,7 +82,8 @@ class Embed_PDF_Viewer {
 	 * @return string
 	 */
 	public function oembed_pdf_viewer( $matches, $atts, $url ) {
-		if ( ! empty( $this->get_attachment_id_by_url( $url ) ) ) {
+		$attachment_id = $this->get_attachment_id_by_url( $url );
+		if ( ! empty( $attachment_id ) ) {
 			$post = get_post( $this->get_attachment_id_by_url( $url ) );
 		} else {
 			/*
