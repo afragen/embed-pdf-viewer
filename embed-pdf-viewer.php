@@ -7,6 +7,8 @@
  * Author URI:        https://github.com/afragen
  * Version:           1.2.1
  * License:           GPLv2+
+ * Domain Path:       /languages
+ * Text Domain:       embed-pdf-viewer
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.html
  * GitHub Plugin URI: https://github.com/afragen/embed-pdf-viewer
  * GitHub Branch:     develop
