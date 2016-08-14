@@ -64,6 +64,10 @@ class Embed_PDF_Viewer {
 	 */
 	public function embed_pdf_media_editor( $html, $id ) {
 		$post = get_post( $id );
+		if ( 'application/pdf' !== $post->post_mime_type ) {
+			return $html;
+		}
+
 
 		return $post->guid . "\n\n";
 	}
