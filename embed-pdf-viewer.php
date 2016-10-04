@@ -67,8 +67,6 @@ class Embed_PDF_Viewer {
 		if ( 'application/pdf' !== $post->post_mime_type ) {
 			return $html;
 		}
-
-
 		return $post->guid . "\n\n";
 	}
 
@@ -163,5 +161,4 @@ class Embed_PDF_Viewer {
 
 		return $attachment[0];
 	}
-
 }
