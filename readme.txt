@@ -2,7 +2,7 @@
 Contributors: afragen
 Tags: pdf, embed, oembed, viewer
 Requires at least: 4.0
-Tested up to: 4.6
+Tested up to: 4.7
 Stable tag: 1.3.0
 License: GPL v2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
