@@ -1,5 +1,8 @@
 #### [unreleased]
 
+#### 1.5.0 / 2016-12-17
+* added CSS to fallback to `iframe` on iOS as `object` isn't scrollable :P
+
 #### 1.4.0 / 2016-12-16
 * switch to using `object` tag, with `iframe` as fallback display method
 

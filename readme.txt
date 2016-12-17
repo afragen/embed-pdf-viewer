@@ -3,7 +3,7 @@ Contributors: afragen
 Tags: pdf, embed, oembed, viewer
 Requires at least: 4.0
 Tested up to: 4.7
-Stable tag: 1.4.0
+Stable tag: 1.5.0
 License: GPL v2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,9 @@ Development on [GitHub](https://github.com/afragen/embed-pdf-viewer). Pull reque
 1. Activate the plugin.
 
 ## Changelog
+
+#### 1.5.0 / 2016-12-17
+* added CSS to fallback to `iframe` on iOS as `object` isn't scrollable :P
 
 #### 1.4.0
 * switch to using `object` tag, with `iframe` as fallback display method
