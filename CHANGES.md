@@ -1,3 +1,6 @@
+#### 1.4.0 / 2016-12-16
+* switch to using `<object>`, with `<iframe>` as fallback display method
+
 #### 1.3.0 / 2016-08-13
 * bugfix for not returning non-PDF file from Media Library
 * added textdomain for translating title etc

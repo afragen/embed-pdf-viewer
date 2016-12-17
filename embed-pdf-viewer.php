@@ -2,10 +2,10 @@
 /**
  * Plugin Name:       Embed PDF Viewer
  * Plugin URI:        https://github.com/afragen/embed-pdf-viewer
- * Description:       Embed a PDF from the Media Library or directly via oEmbed into a Google Doc Viewer.
+ * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed into an `<object>` tag or Google Doc Viewer as fallback.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           1.3.0
+ * Version:           1.4.0
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
@@ -135,10 +135,18 @@ class Embed_PDF_Viewer {
 			$atts['title'] = ucwords( preg_replace( '/(-|_)/', ' ', $post->post_name ) );
 		}
 
-		$embed = '<iframe src="https://docs.google.com/viewer?url=' . urlencode( $post->guid );
-		$embed .= '&amp;embedded=true" frameborder="0" ';
-		$embed .= 'style="height:' . $atts['height'] . 'px;width:' . $atts['width'] . 'px;" ';
-		$embed .= 'title="' . $atts['title'] . '"></iframe>' . "\n";
+		$iframe_fallback = '<iframe src="https://docs.google.com/viewer?url=' . urlencode( $post->guid );
+		$iframe_fallback .= '&amp;embedded=true" frameborder="0" ';
+		$iframe_fallback .= 'style="height:' . $atts['height'] . 'px;width:' . $atts['width'] . 'px;" ';
+		$iframe_fallback .= 'title="' . $atts['title'] . '"></iframe>' . "\n";
+
+		$embed = '<object data="' . $post->guid;
+		$embed .= '#scrollbar=1&toolbar=1"';
+		$embed .= 'type="application/pdf" ';
+		$embed .= 'height=' . $atts['height'] . ' width=' . $atts['width'] . ' > ';
+		$embed .= $iframe_fallback;
+		$embed .= '</object>';
+
 		$embed .= '<a href="' . $post->guid . '">' . $atts['title'] . '</a>';
 
 		return $embed;
