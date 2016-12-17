@@ -3,15 +3,15 @@ Contributors: afragen
 Tags: pdf, embed, oembed, viewer
 Requires at least: 4.0
 Tested up to: 4.7
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 License: GPL v2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 
-Embed a PDF from the Media Library or elsewhere via oEmbed into a Google Doc Viewer.
+Embed a PDF from the Media Library or elsewhere via oEmbed into an `<object>` tag or Google Doc Viewer as fallback.
 
 ## Description
-Embed a PDF from the Media Library or elsewhere via oEmbed into a Google Doc Viewer. The URL only has to be reachable link.
+Embed a PDF from the Media Library or elsewhere via oEmbed into an `<object>` tag or Google Doc Viewer as fallback.. The URL only has to be reachable link.
 
 Inspired by [Embed PDF](https://wordpress.org/plugins/dirtysuds-embed-pdf/) and [RV Embed PDF](https://wordpress.org/plugins/rv-embed-pdf/).
 
@@ -23,6 +23,9 @@ Development on [GitHub](https://github.com/afragen/embed-pdf-viewer). Pull reque
 1. Activate the plugin.
 
 ## Changelog
+
+#### 1.4.0
+* switch to using `<object>`, with `<iframe>` as fallback display method
 
 #### 1.3.0
 * inserting anything other than PDF from Media Library now works as expected.
