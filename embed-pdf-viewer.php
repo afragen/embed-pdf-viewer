@@ -2,10 +2,10 @@
 /**
  * Plugin Name:       Embed PDF Viewer
  * Plugin URI:        https://github.com/afragen/embed-pdf-viewer
- * Description:       Embed a PDF from the Media Library or directly via oEmbed into a Google Doc Viewer.
+ * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed into an `<object>` tag or Google Doc Viewer as fallback.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           1.3.0
+ * Version:           1.4.0
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
