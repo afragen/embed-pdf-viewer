@@ -5,7 +5,7 @@
  * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed into an `object` tag or Google Doc Viewer as fallback.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           1.5.0
+ * Version:           1.5.1
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
@@ -127,12 +127,10 @@ class Embed_PDF_Viewer {
 		}
 		$atts = array_merge( $default, $atts );
 
-		/*
-		 * Create title from filename.
-		 */
-		if ( empty( $atts['title'] ) ) {
-			$atts['title'] = ucwords( preg_replace( '/(-|_)/', ' ', $post->post_name ) );
-		}
+		// Fix title or create from filename.
+		$atts['title'] = empty( $atts['title'] )
+			? ucwords( preg_replace( '/(-|_)/', ' ', $post->post_name ) )
+			: ucwords( preg_replace( '/(-|_)/', ' ', $atts['title'] ) );
 
 		$iframe_fallback = '<iframe class="embed-pdf-viewer" src="https://docs.google.com/viewer?url=' . urlencode( $post->guid );
 		$iframe_fallback .= '&amp;embedded=true" frameborder="0" ';
@@ -145,7 +143,7 @@ class Embed_PDF_Viewer {
 		 */
 		$style = '<style>
 		@media only screen and (max-device-width: 1024px) {
-			object.embed-pdf-viewer { display:none; }			
+			object.embed-pdf-viewer { display:none; }
 		}
 		@media only screen and (min-device-width : 1024px) {
 			iframe.embed-pdf-viewer { display:none; }
