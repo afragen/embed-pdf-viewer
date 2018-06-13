@@ -1,4 +1,5 @@
 #### [unreleased]
+* added filter `embed_pdf_filter_pdf_attributes`
 
 #### 1.5.0 / 2016-12-17
 * added CSS to fallback to `iframe` on iOS as `object` isn't scrollable :P
