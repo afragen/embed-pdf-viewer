@@ -127,6 +127,15 @@ class Embed_PDF_Viewer {
 		}
 		$atts = array_merge( $default, $atts );
 
+		/**
+		 * Filter PDF attributes.
+		 *
+		 * @since 1.6.0
+		 * @param array $atts Array of PDF attributes.
+		 * @return array $atts
+		 */
+		$atts = apply_filters( 'embed_pdf_viewer_pdf_attributes', $atts );
+
 		// Fix title or create from filename.
 		$atts['title'] = empty( $atts['title'] )
 			? ucwords( preg_replace( '/(-|_)/', ' ', $post->post_name ) )
