@@ -1,5 +1,6 @@
 #### [unreleased]
-* added filter `embed_pdf_filter_pdf_attributes`
+* added filter `embed_pdf_viewer_pdf_attributes`
+* updated `readme.txt` to include `Requires PHP` header
 
 #### 1.5.0 / 2016-12-17
 * added CSS to fallback to `iframe` on iOS as `object` isn't scrollable :P
