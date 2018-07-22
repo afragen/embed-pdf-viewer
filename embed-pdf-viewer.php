@@ -5,7 +5,7 @@
  * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed into an `object` tag or Google Doc Viewer as fallback.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           1.5.0
+ * Version:           1.6.0
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
@@ -23,10 +23,12 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 add_filter( 'media_send_to_editor', array( Embed_PDF_Viewer::instance(), 'embed_pdf_media_editor' ), 20, 2 );
-wp_embed_register_handler( 'oembed_pdf_viewer', '#(^(https?)\:\/\/.+\.pdf$)#i', array(
-	Embed_PDF_Viewer::instance(),
-	'oembed_pdf_viewer',
-) );
+wp_embed_register_handler(
+	'oembed_pdf_viewer', '#(^(https?)\:\/\/.+\.pdf$)#i', array(
+		Embed_PDF_Viewer::instance(),
+		'oembed_pdf_viewer',
+	)
+);
 
 /**
  * Class Embed_PDF_Viewer
@@ -66,7 +68,6 @@ class Embed_PDF_Viewer {
 		if ( 'application/pdf' !== $post->post_mime_type ) {
 			return $html;
 		}
-
 
 		return $post->guid . "\n\n";
 	}
@@ -127,14 +128,21 @@ class Embed_PDF_Viewer {
 		}
 		$atts = array_merge( $default, $atts );
 
-		/*
-		 * Create title from filename.
+		/**
+		 * Filter PDF attributes.
+		 *
+		 * @since 1.6.0
+		 * @param array $atts Array of PDF attributes.
+		 * @return array $atts
 		 */
-		if ( empty( $atts['title'] ) ) {
-			$atts['title'] = ucwords( preg_replace( '/(-|_)/', ' ', $post->post_name ) );
-		}
+		$atts = apply_filters( 'embed_pdf_viewer_pdf_attributes', $atts );
 
-		$iframe_fallback = '<iframe class="embed-pdf-viewer" src="https://docs.google.com/viewer?url=' . urlencode( $post->guid );
+		// Fix title or create from filename.
+		$atts['title'] = empty( $atts['title'] )
+			? ucwords( preg_replace( '/(-|_)/', ' ', $post->post_name ) )
+			: ucwords( preg_replace( '/(-|_)/', ' ', $atts['title'] ) );
+
+		$iframe_fallback  = '<iframe class="embed-pdf-viewer" src="https://docs.google.com/viewer?url=' . urlencode( $post->guid );
 		$iframe_fallback .= '&amp;embedded=true" frameborder="0" ';
 		$iframe_fallback .= 'style="height:' . $atts['height'] . 'px;width:' . $atts['width'] . 'px;" ';
 		$iframe_fallback .= 'title="' . $atts['title'] . '"></iframe>' . "\n";
@@ -145,7 +153,7 @@ class Embed_PDF_Viewer {
 		 */
 		$style = '<style>
 		@media only screen and (max-device-width: 1024px) {
-			object.embed-pdf-viewer { display:none; }			
+			object.embed-pdf-viewer { display:none; }
 		}
 		@media only screen and (min-device-width : 1024px) {
 			iframe.embed-pdf-viewer { display:none; }
@@ -153,16 +161,16 @@ class Embed_PDF_Viewer {
 		}
 		</style>';
 
-		$object = '<object class="embed-pdf-viewer" data="' . $post->guid;
+		$object  = '<object class="embed-pdf-viewer" data="' . $post->guid;
 		$object .= '#scrollbar=1&toolbar=1"';
 		$object .= 'type="application/pdf" ';
 		$object .= 'height=' . $atts['height'] . ' width=' . $atts['width'] . ' > ';
 		$object .= $iframe_fallback;
 		$object .= '</object>';
 
-		$embed = $object;
+		$embed  = $object;
 		$embed .= $style . $iframe_fallback;
-		$embed .= '<a href="' . $post->guid . '">' . $atts['title'] . '</a>';
+		$embed .= '<p><a href="' . $post->guid . '">' . $atts['title'] . '</a></p>';
 
 		return $embed;
 	}
