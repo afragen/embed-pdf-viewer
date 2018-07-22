@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 1.6.0 / 2018-07-22
 * added filter `embed_pdf_viewer_pdf_attributes`
 * updated `readme.txt` to include `Requires PHP` header
 * added paragraph tag around link to PDF
