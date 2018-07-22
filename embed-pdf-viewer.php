@@ -170,7 +170,7 @@ class Embed_PDF_Viewer {
 
 		$embed  = $object;
 		$embed .= $style . $iframe_fallback;
-		$embed .= '<a href="' . $post->guid . '">' . $atts['title'] . '</a>';
+		$embed .= '<p><a href="' . $post->guid . '">' . $atts['title'] . '</a></p>';
 
 		return $embed;
 	}
