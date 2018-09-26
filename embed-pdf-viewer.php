@@ -5,7 +5,7 @@
  * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed into an `object` tag or Google Doc Viewer as fallback.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           1.6.0
+ * Version:           1.6.0.1
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
@@ -24,7 +24,9 @@ if ( ! defined( 'WPINC' ) ) {
 
 add_filter( 'media_send_to_editor', array( Embed_PDF_Viewer::instance(), 'embed_pdf_media_editor' ), 20, 2 );
 wp_embed_register_handler(
-	'oembed_pdf_viewer', '#(^(https?)\:\/\/.+\.pdf$)#i', array(
+	'oembed_pdf_viewer',
+	'#(^(https?)\:\/\/.+\.pdf$)#i',
+	array(
 		Embed_PDF_Viewer::instance(),
 		'oembed_pdf_viewer',
 	)
