@@ -29,6 +29,12 @@ wp_embed_register_handler(
 		'oembed_pdf_viewer',
 	)
 );
+add_action(
+	'init',
+	function() {
+		load_plugin_textdomain( 'embed_pdf_viewer' );
+	}
+);
 
 /**
  * Class Embed_PDF_Viewer
