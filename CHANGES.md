@@ -1,4 +1,5 @@
 #### [unreleased]
+* properly initialize `load_plugin_textdomain()`
 
 #### 1.6.0 / 2018-07-22
 * added filter `embed_pdf_viewer_pdf_attributes`
