@@ -3,10 +3,10 @@
 * Contributors: afragen
 * Tags: pdf, embed, oembed, viewer
 * Requires at least: 4.0
-* Tested up to: 4.9
+* Tested up to: 5.0
 * Stable tag: master
 * License: GPL v2+
-* License URI: <http://www.gnu.org/licenses/gpl-2.0.html>
+* License URI: <https://www.gnu.org/licenses/gpl-2.0.html>
 
 Embed a PDF from the Media Library or elsewhere via oEmbed into an `object` tag or Google Doc Viewer as fallback.
 

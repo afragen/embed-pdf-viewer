@@ -1,5 +1,8 @@
 #### [unreleased]
 
+#### 1.6.1 / 2018-11-25
+* properly initialize `load_plugin_textdomain()`
+
 #### 1.6.0 / 2018-07-22
 * added filter `embed_pdf_viewer_pdf_attributes`
 * updated `readme.txt` to include `Requires PHP` header
