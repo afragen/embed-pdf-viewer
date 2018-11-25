@@ -5,7 +5,7 @@ Tags: pdf, embed, oembed, viewer
 Requires at least: 4.0
 Tested up to: 5.0
 Requires PHP: 5.3
-Stable tag: 1.6.0
+Stable tag: 1.6.1
 Requires PHP: 5.3
 License: GPL v2+
 License URI: <https://www.gnu.org/licenses/gpl-2.0.html>
