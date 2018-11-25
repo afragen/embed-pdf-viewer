@@ -3,12 +3,12 @@
 Contributors: afragen
 Tags: pdf, embed, oembed, viewer
 Requires at least: 4.0
-Tested up to: 4.9
+Tested up to: 5.0
 Requires PHP: 5.3
 Stable tag: 1.6.0
 Requires PHP: 5.3
 License: GPL v2+
-License URI: <http://www.gnu.org/licenses/gpl-2.0.html>
+License URI: <https://www.gnu.org/licenses/gpl-2.0.html>
 
 Embed a PDF from the Media Library or elsewhere via oEmbed into an `object` tag or Google Doc Viewer as fallback.
 
@@ -20,6 +20,9 @@ Inspired by [Embed PDF](https://wordpress.org/plugins/dirtysuds-embed-pdf/) and 
 Development on [GitHub](https://github.com/afragen/embed-pdf-viewer). Pull requests are welcome against the `develop` branch.
 
 ## Changelog
+
+#### 1.6.1 / 2018-11-25
+* properly initialize `load_plugin_textdomain()`
 
 #### 1.6.0 / 2018-07-22
 * added filter `embed_pdf_viewer_pdf_attributes`
