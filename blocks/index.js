@@ -46,7 +46,6 @@ const renderEmbed = ( props ) => {
 }
 
 const renderEdit = ( props ) => {
-	debugger;
 	const { attributes: { id, url, width, height, align }, setAttributes, isEditing, hasError, setState, className, media, noticeUI, noticeOperations, toggleSelection, isRTL } = props;
 	const isExternal = isExternalPDF( id, url );
 
@@ -232,6 +231,6 @@ registerBlockType( 'embed-pdf-viewer/embed-pdf-viewer', {
 		}
 	},
 
-	edit: withNotices( withState( { isEditing: false, hasError: false }, renderEdit ) ),
+	edit: withNotices( withState( { isEditing: false, hasError: false })( renderEdit ) ),
 	save: renderEmbed,
 } );
