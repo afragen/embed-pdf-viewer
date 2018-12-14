@@ -35,6 +35,17 @@ add_action(
 	'init',
 	function() {
 		load_plugin_textdomain( 'embed_pdf_viewer' );
+
+		wp_register_script(
+			'embed-pdf-viewer',
+			plugins_url( 'blocks/index.build.js', __FILE__ ),
+			array( 'wp-blocks', 'wp-element' )
+		);
+
+		register_block_type( 'embed-pdf-viewer/index', array(
+		    'editor_script' => 'embed-pdf-viewer',
+		) );
+
 	}
 );
 
