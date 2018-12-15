@@ -181,7 +181,6 @@ class Embed_PDF_Viewer {
 		$object .= '#scrollbar=1&toolbar=1"';
 		$object .= 'type="application/pdf" ';
 		$object .= 'height=' . $atts['height'] . ' width=' . $atts['width'] . ' > ';
-		$object .= $iframe_fallback;
 		$object .= '</object>';
 
 		$style = '<style>

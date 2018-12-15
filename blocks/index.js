@@ -33,13 +33,6 @@ const renderEmbed = (props) => {
 				height={style.height}
 				width={style.width}
 			>
-				<iframe
-					class="embed-pdf-viewer"
-					src={'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true'}
-					frameborder="0"
-					style={{ height: style.height, width: style.width }}
-				>
-				</iframe>
 			</object>
 			<iframe
 				class="embed-pdf-viewer"
