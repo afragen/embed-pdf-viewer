@@ -1,4 +1,5 @@
 #### [unreleased]
+* a proper PDF block was added by Alex Kirk, many thanks
 
 #### 1.6.1 / 2018-11-25
 * properly initialize `load_plugin_textdomain()`
