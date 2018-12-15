@@ -175,11 +175,11 @@ class Embed_PDF_Viewer {
 		 */
 		$style = '<style>
 		@media only screen and (max-device-width: 1024px) {
-			figure object.embed-pdf-viewer { display:none; }
+			object.embed-pdf-viewer { display:none; }
 		}
 		@media only screen and (min-device-width : 1024px) {
-			figure iframe.embed-pdf-viewer { display:none; }
-			figure object iframe.embed-pdf-viewer { display:block; }
+			iframe.embed-pdf-viewer { display:none; }
+			object iframe.embed-pdf-viewer { display:block; }
 		}
 		</style>';
 
