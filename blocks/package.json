@@ -1,5 +1,6 @@
 {
   "name": "embed-pdf-viewer",
+  "description": "Block for embedding PDF documents.",
   "version": "0.1.0",
   "license": "GPL-2.0-or-later",
   "main": "index.js",
