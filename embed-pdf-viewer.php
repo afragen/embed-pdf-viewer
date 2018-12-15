@@ -184,8 +184,15 @@ class Embed_PDF_Viewer {
 		$object .= $iframe_fallback;
 		$object .= '</object>';
 
+		$style = '<style>
+			@media only screen and (min-device-width: 1024px) {
+				iframe.embed-pdf-viewer { display: none; }
+				object iframe.embed-pdf-viewer { display: block; }
+			}
+		</style>';
+
 		$embed  = $object;
-		$embed .= $iframe_fallback;
+		$embed .= $style . $iframe_fallback;
 		$embed .= '<p><a href="' . $post->guid . '">' . $atts['title'] . '</a></p>';
 
 		return $embed;
