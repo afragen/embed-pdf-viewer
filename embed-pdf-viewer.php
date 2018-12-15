@@ -36,6 +36,14 @@ add_action(
 	function() {
 		load_plugin_textdomain( 'embed_pdf_viewer' );
 
+		wp_enqueue_style(
+			'embed-pdf-viewer',
+			plugins_url( 'css/embed-pdf-viewer.css', __FILE__ ),
+			null,
+			null,
+			'screen'
+		);
+
 		wp_register_script(
 			'embed-pdf-viewer',
 			plugins_url( 'blocks/index.build.js', __FILE__ ),
@@ -169,20 +177,6 @@ class Embed_PDF_Viewer {
 		$iframe_fallback .= 'style="height:' . $atts['height'] . 'px;width:' . $atts['width'] . 'px;" ';
 		$iframe_fallback .= 'title="' . $atts['title'] . '"></iframe>' . "\n";
 
-		/*
-		 * Because <object> doesn't scroll in iOS
-		 * Hide <object> in iOS and hide <iframe> in not iOS
-		 */
-		$style = '<style>
-		@media only screen and (max-device-width: 1024px) {
-			object.embed-pdf-viewer { display:none; }
-		}
-		@media only screen and (min-device-width : 1024px) {
-			iframe.embed-pdf-viewer { display:none; }
-			object iframe.embed-pdf-viewer { display:block; }
-		}
-		</style>';
-
 		$object  = '<object class="embed-pdf-viewer" data="' . $post->guid;
 		$object .= '#scrollbar=1&toolbar=1"';
 		$object .= 'type="application/pdf" ';
@@ -191,7 +185,7 @@ class Embed_PDF_Viewer {
 		$object .= '</object>';
 
 		$embed  = $object;
-		$embed .= $style . $iframe_fallback;
+		$embed .= $iframe_fallback;
 		$embed .= '<p><a href="' . $post->guid . '">' . $atts['title'] . '</a></p>';
 
 		return $embed;
