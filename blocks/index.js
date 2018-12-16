@@ -25,7 +25,7 @@ const renderEmbed = (props) => {
 		style.height = defaultHeight;
 	}
 	return (
-		<div className={`${className}__content-wrapper`}>
+		<figure className={`${className}__content-wrapper`}>
 			<object
 				class="embed-pdf-viewer"
 				data={url + '#scrollbar=1&toolbar=1'}
@@ -38,10 +38,11 @@ const renderEmbed = (props) => {
 				class="embed-pdf-viewer"
 				src={'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true'}
 				frameborder="0"
-				style={{ height: style.height, width: style.width }}
+				height={style.height}
+				width={style.width}
 			>
 			</iframe>
-		</div>
+		</figure>
 	);
 }
 
