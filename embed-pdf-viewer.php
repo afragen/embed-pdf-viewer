@@ -185,8 +185,8 @@ class Embed_PDF_Viewer {
 
 		$style = '<style>
 			@media only screen and (min-device-width: 1024px) {
-				iframe.embed-pdf-viewer { display: none; }
-				object iframe.embed-pdf-viewer { display: block; }
+				iframe.embed-pdf-viewer { display:none; }
+				object.embed-pdf-viewer { display:block; }
 			}
 		</style>';
 
