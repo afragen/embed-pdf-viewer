@@ -5,7 +5,7 @@
  * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `object` tag or Google Doc Viewer as fallback.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           1.6.1.2
+ * Version:           1.6.1.3
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
