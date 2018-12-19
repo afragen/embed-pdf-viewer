@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 
 const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
+const { registerBlockType, getBlockDefaultClassName } = wp.blocks;
 const { RichText, MediaPlaceholder, MediaUpload, InspectorControls, BlockControls, BlockAlignmentToolbar } = wp.editor;
 const { Fragment } = wp.element;
 const { withNotices, IconButton, TextControl, PanelBody, Toolbar, ResizableBox } = wp.components;
@@ -11,13 +11,15 @@ const { isBlobURL } = wp.blob;
 const isExternalPDF = (id, url) => url && !id && !isBlobURL(url);
 
 const renderEmbed = (props) => {
-	const { attributes: { url, width, height }, className } = props;
+	const { attributes: { url, width, height } } = props;
 	const style = { width, height };
+	const myClassName = getBlockDefaultClassName('embed-pdf-viewer/embed-pdf-viewer');
+
 	if (undefined === url || !url) {
 		return null;
 	}
 	return (
-		<figure className={`${className}__content-wrapper`}>
+		<figure className={`${myClassName}__content-wrapper`}>
 			<object
 				className="embed-pdf-viewer"
 				data={url + '#scrollbar=1&toolbar=1'}
