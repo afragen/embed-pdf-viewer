@@ -8,8 +8,6 @@ const { withNotices, IconButton, TextControl, PanelBody, Toolbar, ResizableBox }
 const { withState } = wp.compose;
 const { isBlobURL } = wp.blob;
 
-const defaultWidth = 600;
-const defaultHeight = 400;
 const isExternalPDF = (id, url) => url && !id && !isBlobURL(url);
 
 const renderEmbed = (props) => {
@@ -17,12 +15,6 @@ const renderEmbed = (props) => {
 	const style = { width, height };
 	if (undefined === url || !url) {
 		return null;
-	}
-	if (undefined === style.width) {
-		style.width = defaultWidth;
-	}
-	if (undefined === style.height) {
-		style.height = defaultHeight;
 	}
 	return (
 		<figure className={`${className}__content-wrapper`}>
@@ -220,8 +212,14 @@ registerBlockType('embed-pdf-viewer/embed-pdf-viewer', {
 	attributes: {
 		id: { type: 'number', },
 		url: { type: 'string', },
-		width: { type: 'number', },
-		height: { type: 'number', },
+		width: {
+			type: 'number',
+			default: 600,
+		},
+		height: {
+			type: 'number',
+			default: 400,
+		},
 		align: { type: 'string', },
 	},
 
