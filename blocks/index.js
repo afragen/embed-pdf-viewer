@@ -213,11 +213,11 @@ registerBlockType('embed-pdf-viewer/embed-pdf-viewer', {
 		id: { type: 'number', },
 		url: { type: 'string', },
 		width: {
-			type: 'number',
+			type: 'string',
 			default: 600,
 		},
 		height: {
-			type: 'number',
+			type: 'string',
 			default: 400,
 		},
 		align: { type: 'string', },
