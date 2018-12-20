@@ -1,0 +1,12 @@
+/*
+ * Because <object> doesn't scroll in iOS
+ * Hide <object> in iOS and hide <iframe> in not iOS
+ */
+@media only screen and (max-device-width: 1024px) {
+	object.embed-pdf-viewer { display:none; }
+	iframe.embed-pdf-viewer { display:block; }
+}
+@media only screen and (min-device-width : 1024px) {
+	object.embed-pdf-viewer { display:block; }
+	iframe.embed-pdf-viewer { display:none; }
+}

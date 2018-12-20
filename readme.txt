@@ -1,25 +1,29 @@
 # Embed PDF Viewer
 
-Contributors: afragen
-Tags: pdf, embed, oembed, viewer
-Requires at least: 4.0
+Contributors: afragen, akirk
+Tags: pdf, embed, oembed, viewer, block
+Requires at least: 5.0
 Tested up to: 5.0
-Requires PHP: 5.3
-Stable tag: 1.6.1
-Requires PHP: 5.3
+Requires PHP: 5.6
+Stable tag: 2.0.0
 License: GPL v2+
 License URI: <https://www.gnu.org/licenses/gpl-2.0.html>
 
-Embed a PDF from the Media Library or elsewhere via oEmbed into an `object` tag or Google Doc Viewer as fallback.
+Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `object` tag or Google Doc Viewer as fallback.
 
 ## Description
-Embed a PDF from the Media Library or elsewhere via oEmbed into an `object` tag or Google Doc Viewer as fallback. The URL only has to be reachable link.
+Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `object` tag or Google Doc Viewer as fallback. The URL only has to be world reachable link.
 
 Inspired by [Embed PDF](https://wordpress.org/plugins/dirtysuds-embed-pdf/) and [RV Embed PDF](https://wordpress.org/plugins/rv-embed-pdf/).
+
+Many thanks to [Alex Kirk](https://github.com/akirk) for making Embed PDF Viewer compatible with the new block editor.
 
 Development on [GitHub](https://github.com/afragen/embed-pdf-viewer). Pull requests are welcome against the `develop` branch.
 
 ## Changelog
+
+#### 2.0.0 / 2018-12-20 🎂
+* a proper PDF block was added with much help from [Alex Kirk](https://github.com/akirk), many thanks
 
 #### 1.6.1 / 2018-11-25
 * properly initialize `load_plugin_textdomain()`
