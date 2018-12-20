@@ -2,7 +2,7 @@
 
 * Contributors: afragen, akirk
 * Tags: pdf, embed, oembed, viewer, block
-* Requires at least: 4.0
+* Requires at least: 5.0
 * Tested up to: 5.0
 * Stable tag: master
 * License: GPL v2+
