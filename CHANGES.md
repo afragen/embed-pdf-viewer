@@ -1,4 +1,5 @@
 #### [unreleased]
+* added `composer.json` and automatically create POT with `composer update`
 
 #### 2.0.0 / 2018-12-20 🎂
 * a proper PDF block was added with much help from [Alex Kirk](https://github.com/akirk), many thanks
