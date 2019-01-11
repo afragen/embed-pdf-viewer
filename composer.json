@@ -1,0 +1,40 @@
+{
+    "name": "afragen/embed-pdf-viewer",
+    "description": "Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `object` tag or Google Doc Viewer as fallback.",
+    "type": "wordpress-plugin",
+    "keywords": [
+        "pdf",
+        "embed",
+        "viewer",
+        "oembed",
+        "block"
+    ],
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Andy Fragen",
+            "email": "andy@thefragens.com",
+            "homepage": "https://thefragens.com",
+            "role": "Developer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/afragen/embed-pdf-viewer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/afragen/embed-pdf-viewer/issues",
+        "source": "https://github.com/afragen/embed-pdf-viewer"
+    },
+    "prefer-stable": true,
+    "require": {
+        "php": ">=5.6"
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "wp i18n make-pot . languages/embed-pdf-viewer.pot"
+        ]
+    }
+}
