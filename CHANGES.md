@@ -1,5 +1,8 @@
 #### [unreleased]
+
+#### 2.0.1 / 2019-01-11
 * added `composer.json` and automatically create POT with `composer update`
+* added check for `register_block_type()` for WP 4.9.x and below
 
 #### 2.0.0 / 2018-12-20 🎂
 * a proper PDF block was added with much help from [Alex Kirk](https://github.com/akirk), many thanks
