@@ -5,14 +5,14 @@
  * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `object` tag or Google Doc Viewer as fallback.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           2.0.1
+ * Version:           2.0.2
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.html
  * GitHub Plugin URI: https://github.com/afragen/embed-pdf-viewer
  * Requires PHP:      5.6
- * Requires WP:       5.0
+ * Requires WP:       4.6
  */
 
 /**

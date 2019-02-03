@@ -1,5 +1,8 @@
 #### [unreleased]
 
+#### 2.0.2 / 2019-02-03
+* update WordPress requirements
+
 #### 2.0.1 / 2019-01-11
 * added `composer.json` and automatically create POT with `composer update`
 * added check for `register_block_type()` for WP 4.9.x and below
