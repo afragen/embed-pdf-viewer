@@ -2,10 +2,10 @@
 
 Contributors: afragen, akirk
 Tags: pdf, embed, oembed, viewer, block
-Requires at least: 5.0
-Tested up to: 5.0
+Requires at least: 4.6
+Tested up to: 5.1
 Requires PHP: 5.6
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPL v2+
 License URI: <https://www.gnu.org/licenses/gpl-2.0.html>
 
@@ -21,6 +21,9 @@ Many thanks to [Alex Kirk](https://github.com/akirk) for making Embed PDF Viewer
 Development on [GitHub](https://github.com/afragen/embed-pdf-viewer). Pull requests are welcome against the `develop` branch.
 
 ## Changelog
+
+#### 2.0.2 / 2019-02-03
+* update WordPress requirements
 
 #### 2.0.1 / 2019-01-11
 * added `composer.json` and automatically create POT with `composer update`
