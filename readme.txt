@@ -5,7 +5,7 @@ Tags: pdf, embed, oembed, viewer, block
 Requires at least: 4.6
 Tested up to: 5.2
 Requires PHP: 5.6
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 License: GPL v2+
 License URI: <https://www.gnu.org/licenses/gpl-2.0.html>
 
@@ -21,6 +21,10 @@ Many thanks to [Alex Kirk](https://github.com/akirk) for making Embed PDF Viewer
 Development on [GitHub](https://github.com/afragen/embed-pdf-viewer). Pull requests are welcome against the `develop` branch.
 
 ## Changelog
+
+#### 2.0.3 / 2019-04-25
+* move block registration to it's own function and hook
+* WPCS updates
 
 #### 2.0.2 / 2019-02-03
 * update WordPress requirements
