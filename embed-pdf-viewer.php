@@ -1,11 +1,20 @@
 <?php
 /**
+ * Embed PDF Viewer
+ *
+ * @author  Andy Fragen
+ * @license GPL-2.0+
+ * @link    https://github.com/afragen/embed-pdf-viewer
+ * @package embed-pdf-viewer
+ */
+
+/**
  * Plugin Name:       Embed PDF Viewer
  * Plugin URI:        https://github.com/afragen/embed-pdf-viewer
  * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `object` tag or Google Doc Viewer as fallback.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           2.0.2
+ * Version:           2.0.3
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
@@ -33,39 +42,24 @@ wp_embed_register_handler(
 );
 add_action(
 	'init',
-	function() {
+	function () {
 		load_plugin_textdomain( 'embed_pdf_viewer' );
 
 		wp_enqueue_style(
 			'embed-pdf-viewer',
 			plugins_url( 'css/embed-pdf-viewer.css', __FILE__ ),
-			null,
-			null,
+			array(),
+			false,
 			'screen'
 		);
-
-		wp_register_script(
-			'embed-pdf-viewer',
-			plugins_url( 'blocks/index.build.js', __FILE__ ),
-			array( 'wp-blocks', 'wp-element' )
-		);
-
-		if ( function_exists( 'register_block_type' ) ) {
-			register_block_type(
-				'embed-pdf-viewer/index',
-				array(
-					'editor_script' => 'embed-pdf-viewer',
-				)
-			);
-		}
 	}
 );
+add_action( 'init', array( Embed_PDF_Viewer::instance(), 'register_block' ) );
 
 /**
  * Class Embed_PDF_Viewer
  */
 class Embed_PDF_Viewer {
-
 	/**
 	 * For singleton.
 	 *
@@ -84,6 +78,32 @@ class Embed_PDF_Viewer {
 		}
 
 		return self::$instance;
+	}
+
+	/**
+	 * Register block.
+	 *
+	 * @return void
+	 */
+	public function register_block() {
+		if ( ! function_exists( 'register_block_type' ) ) {
+			return;
+		}
+
+		wp_register_script(
+			'embed-pdf-viewer',
+			plugins_url( 'blocks/index.build.js', __FILE__ ),
+			array( 'wp-blocks', 'wp-element' ),
+			false,
+			true
+		);
+
+		register_block_type(
+			'embed-pdf-viewer/index',
+			array(
+				'editor_script' => 'embed-pdf-viewer',
+			)
+		);
 	}
 
 	/**
@@ -106,9 +126,9 @@ class Embed_PDF_Viewer {
 	/**
 	 * Create oEmbed code.
 	 *
-	 * @param array  $matches
-	 * @param array  $atts array of media height/width.
-	 * @param string $url  URI for media file.
+	 * @param array  $matches Regex matches.
+	 * @param array  $atts    array of media height/width.
+	 * @param string $url     URI for media file.
 	 *
 	 * @return string
 	 */
@@ -132,9 +152,9 @@ class Embed_PDF_Viewer {
 	/**
 	 * Create output for Google Doc Viewer and href link to file.
 	 *
-	 * @param \WP_Post     $post
-	 * @param array|string $atts    array of media height/width or
-	 *                              href to media library asset.
+	 * @param \WP_Post     $post Current post.
+	 * @param array|string $atts array of media height/width or
+	 *                           href to media library asset.
 	 *
 	 * @return bool|string
 	 */
@@ -163,7 +183,7 @@ class Embed_PDF_Viewer {
 		 * Filter PDF attributes.
 		 *
 		 * @since 1.6.0
-		 * @param array $atts Array of PDF attributes.
+		 * @param  array $atts Array of PDF attributes.
 		 * @return array $atts
 		 */
 		$atts = apply_filters( 'embed_pdf_viewer_pdf_attributes', $atts );
@@ -173,7 +193,7 @@ class Embed_PDF_Viewer {
 			? ucwords( preg_replace( '/(-|_)/', ' ', $post->post_name ) )
 			: ucwords( preg_replace( '/(-|_)/', ' ', $atts['title'] ) );
 
-		$iframe_fallback  = '<iframe class="embed-pdf-viewer" src="https://docs.google.com/viewer?url=' . urlencode( $post->guid );
+		$iframe_fallback  = '<iframe class="embed-pdf-viewer" src="https://docs.google.com/viewer?url=' . rawurlencode( $post->guid );
 		$iframe_fallback .= '&amp;embedded=true" frameborder="0" ';
 		$iframe_fallback .= 'style="height:' . $atts['height'] . 'px;width:' . $atts['width'] . 'px;" ';
 		$iframe_fallback .= 'title="' . $atts['title'] . '"></iframe>' . "\n";
@@ -217,5 +237,4 @@ class Embed_PDF_Viewer {
 
 		return $attachment[0];
 	}
-
 }

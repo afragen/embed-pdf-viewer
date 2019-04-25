@@ -3,3 +3,4 @@
 .gitattributes export-ignore
 .gitignore export-ignore
 composer.lock export-ignore
+.svnignore export-ignore

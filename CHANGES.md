@@ -1,5 +1,9 @@
 #### [unreleased]
 
+#### 2.0.3 / 2019-04-25
+* move block registration to it's own function and hook
+* WPCS updates
+
 #### 2.0.2 / 2019-02-03
 * update WordPress requirements
 
