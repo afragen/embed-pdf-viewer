@@ -1,11 +1,9 @@
 README.md
-.github/*
+.github
 .git
 .gitattributes
 .gitignore
-.composer.lock
+composer.lock
 .svnignore
 blocks/.babelrc
 blocks/.gitignore
-blocks/package.json
-blocks/webpack.config.js
