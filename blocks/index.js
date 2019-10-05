@@ -78,7 +78,6 @@ const renderEdit = (props) => {
 					title: __('PDF'),
 					instructions: __('Drag a PDF, upload a new one or select a PDF from your library.'),
 				}}
-				allowedTypes={'application/pdf'}
 				onSelect={onSelectFile}
 				onSelectURL={updateAttribute('url')}
 				notices={props.noticeUI}
