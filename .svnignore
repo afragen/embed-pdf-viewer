@@ -7,3 +7,5 @@ composer.lock
 .svnignore
 blocks/.babelrc
 blocks/.gitignore
+blocks/webpack.config.js
+blocks/package-lock.json
