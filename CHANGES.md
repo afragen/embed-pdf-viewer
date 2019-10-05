@@ -1,4 +1,5 @@
 #### [unreleased]
+#### 2.0.4 / 2019-10-05
 * fixed [PDF upload within block](https://wordpress.org/support/topic/uploading-from-within-block-doesnt-work/)
 
 #### 2.0.3 / 2019-04-25
