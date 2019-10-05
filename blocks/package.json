@@ -10,7 +10,7 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.0",
     "cross-env": "^5.0.1",
-    "webpack": "^4.40"
+    "webpack": "^3.1"
   },
   "scripts": {
     "build": "BABEL_ENV=default NODE_ENV=production webpack",
