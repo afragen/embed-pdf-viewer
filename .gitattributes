@@ -4,3 +4,6 @@
 .gitignore export-ignore
 composer.lock export-ignore
 .svnignore export-ignore
+build/package-lock.json
+build/.babelrc
+build/webpack.config.js
