@@ -21,7 +21,7 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.html
  * GitHub Plugin URI: https://github.com/afragen/embed-pdf-viewer
  * Requires PHP:      5.6
- * Requires WP:       4.6
+ * Requires at least: 4.6
  */
 
 /**
