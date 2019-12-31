@@ -9,3 +9,4 @@ blocks/.babelrc
 blocks/.gitignore
 blocks/webpack.config.js
 blocks/package-lock.json
+.wordpress-org/
