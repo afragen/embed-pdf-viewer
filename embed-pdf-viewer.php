@@ -14,14 +14,14 @@
  * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `object` tag or Google Doc Viewer as fallback.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           2.0.4
+ * Version:           2.0.5
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.html
  * GitHub Plugin URI: https://github.com/afragen/embed-pdf-viewer
  * Requires PHP:      5.6
- * Requires WP:       4.6
+ * Requires at least: 4.6
  */
 
 /**
@@ -31,14 +31,14 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-add_filter( 'media_send_to_editor', array( Embed_PDF_Viewer::instance(), 'embed_pdf_media_editor' ), 20, 2 );
+add_filter( 'media_send_to_editor', [ Embed_PDF_Viewer::instance(), 'embed_pdf_media_editor' ], 20, 2 );
 wp_embed_register_handler(
 	'oembed_pdf_viewer',
 	'#(^(https?)\:\/\/.+\.pdf$)#i',
-	array(
+	[
 		Embed_PDF_Viewer::instance(),
 		'oembed_pdf_viewer',
-	)
+	]
 );
 add_action(
 	'init',
@@ -48,13 +48,13 @@ add_action(
 		wp_enqueue_style(
 			'embed-pdf-viewer',
 			plugins_url( 'css/embed-pdf-viewer.css', __FILE__ ),
-			array(),
+			[],
 			false,
 			'screen'
 		);
 	}
 );
-add_action( 'init', array( Embed_PDF_Viewer::instance(), 'register_block' ) );
+add_action( 'init', [ Embed_PDF_Viewer::instance(), 'register_block' ] );
 
 /**
  * Class Embed_PDF_Viewer
@@ -93,16 +93,16 @@ class Embed_PDF_Viewer {
 		wp_register_script(
 			'embed-pdf-viewer',
 			plugins_url( 'blocks/index.build.js', __FILE__ ),
-			array( 'wp-blocks', 'wp-element' ),
+			[ 'wp-blocks', 'wp-element' ],
 			false,
 			true
 		);
 
 		register_block_type(
 			'embed-pdf-viewer/index',
-			array(
+			[
 				'editor_script' => 'embed-pdf-viewer',
-			)
+			]
 		);
 	}
 
@@ -158,21 +158,21 @@ class Embed_PDF_Viewer {
 	 *
 	 * @return bool|string
 	 */
-	private function create_output( WP_Post $post, $atts = array() ) {
+	private function create_output( WP_Post $post, $atts = [] ) {
 		if ( 'application/pdf' !== $post->post_mime_type ) {
 			return $atts;
 		}
 
-		$default = array(
+		$default = [
 			'height' => 500,
 			'width'  => 800,
 			'title'  => $post->post_title,
-		);
+		];
 
 		/*
 		 * Ensure $atts isn't the href.
 		 */
-		$atts = is_array( $atts ) ? $atts : array();
+		$atts = is_array( $atts ) ? $atts : [];
 
 		if ( isset( $atts['height'] ) ) {
 			$atts['height'] = ( $atts['height'] / 2 );
