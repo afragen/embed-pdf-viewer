@@ -45,6 +45,7 @@ add_action(
 	function () {
 		load_plugin_textdomain( 'embed_pdf_viewer' );
 
+		// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NoExplicitVersion
 		wp_enqueue_style(
 			'embed-pdf-viewer',
 			plugins_url( 'css/embed-pdf-viewer.css', __FILE__ ),
@@ -90,6 +91,7 @@ class Embed_PDF_Viewer {
 			return;
 		}
 
+		// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NoExplicitVersion
 		wp_register_script(
 			'embed-pdf-viewer',
 			plugins_url( 'blocks/build/index.js', __FILE__ ),
@@ -222,6 +224,7 @@ class Embed_PDF_Viewer {
 	 */
 	private function get_attachment_id_by_url( $url ) {
 		global $wpdb;
+		// phpcs:ignore WordPress.DB
 		$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid='%s';", $url ) );
 
 		if ( empty( $attachment ) ) {
