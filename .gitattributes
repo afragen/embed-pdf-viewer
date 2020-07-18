@@ -4,6 +4,4 @@
 .gitignore export-ignore
 composer.lock export-ignore
 .svnignore export-ignore
-build/.babelrc export-ignore
-build/webpack.config.js export-ignore
 .wordpress-org export-ignore
