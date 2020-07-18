@@ -1,4 +1,5 @@
 #### [unreleased]
+* update block build process
 
 #### 2.0.5 / 2020-03-09
 * minor updates to plugin structure on GitHub

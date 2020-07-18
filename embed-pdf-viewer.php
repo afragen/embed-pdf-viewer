@@ -14,7 +14,7 @@
  * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `object` tag or Google Doc Viewer as fallback.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           2.0.5
+ * Version:           2.0.5.1
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
@@ -45,6 +45,7 @@ add_action(
 	function () {
 		load_plugin_textdomain( 'embed_pdf_viewer' );
 
+		// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NoExplicitVersion
 		wp_enqueue_style(
 			'embed-pdf-viewer',
 			plugins_url( 'css/embed-pdf-viewer.css', __FILE__ ),
@@ -90,9 +91,10 @@ class Embed_PDF_Viewer {
 			return;
 		}
 
+		// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NoExplicitVersion
 		wp_register_script(
 			'embed-pdf-viewer',
-			plugins_url( 'blocks/index.build.js', __FILE__ ),
+			plugins_url( 'blocks/build/index.js', __FILE__ ),
 			[ 'wp-blocks', 'wp-element' ],
 			false,
 			true
@@ -204,16 +206,9 @@ class Embed_PDF_Viewer {
 		$object .= 'height=' . $atts['height'] . ' width=' . $atts['width'] . ' > ';
 		$object .= '</object>';
 
-		$style = '<style>
-			@media only screen and (min-device-width: 1024px) {
-				iframe.embed-pdf-viewer { display:none; }
-				object.embed-pdf-viewer { display:block; }
-			}
-		</style>';
-
-		$embed  = $object;
-		$embed .= $style . $iframe_fallback;
-		$embed .= '<p><a href="' . $post->guid . '">' . $atts['title'] . '</a></p>';
+		$embed  = '<figure>';
+		$embed .= $object . $iframe_fallback;
+		$embed .= '<p><a href="' . $post->guid . '">' . $atts['title'] . '</a></p></figure>';
 
 		return $embed;
 	}
@@ -229,6 +224,7 @@ class Embed_PDF_Viewer {
 	 */
 	private function get_attachment_id_by_url( $url ) {
 		global $wpdb;
+		// phpcs:ignore WordPress.DB
 		$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid='%s';", $url ) );
 
 		if ( empty( $attachment ) ) {
