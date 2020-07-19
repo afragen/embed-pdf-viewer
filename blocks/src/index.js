@@ -11,7 +11,7 @@ const { isBlobURL } = wp.blob;
 const isExternalPDF = (id, url) => url && !id && !isBlobURL(url);
 
 const renderEmbed = (props) => {
-	const { attributes: { url, width, height } } = props;
+	const { attributes: { title, description, url, width, height } } = props;
 	const style = { width, height };
 	const myClassName = getBlockDefaultClassName('embed-pdf-viewer/pdf');
 
@@ -27,6 +27,7 @@ const renderEmbed = (props) => {
 				type="application/pdf"
 				height={style.height}
 				width={style.width}
+				title={description}
 			>
 			</object>
 			<iframe
@@ -35,15 +36,16 @@ const renderEmbed = (props) => {
 				frameBorder="0"
 				height={style.height}
 				width={style.width}
+				title={description}
 			>
 			</iframe>
-			<p><a href={url}>{url}</a></p>
+			<p><a href={url} title={description}>{title}</a></p>
 		</figure>
 	);
 }
 
 const renderEdit = (props) => {
-	const { attributes: { id, url, width, height, align }, setAttributes, isEditing, hasError, setState, className, media, noticeUI, noticeOperations, toggleSelection, isRTL } = props;
+	const { attributes: { id, title, description, url, width, height, align }, setAttributes, isEditing, hasError, setState, className, media, noticeUI, noticeOperations, toggleSelection, isRTL } = props;
 	const isExternal = isExternalPDF(id, url);
 
 	function updateAttribute(key) {
@@ -62,6 +64,8 @@ const renderEdit = (props) => {
 			setAttributes({
 				url: media.url,
 				id: media.id,
+				title: media.title,
+				description: media.description,
 			});
 		}
 	}
@@ -215,6 +219,8 @@ registerBlockType('embed-pdf-viewer/pdf', {
 	category: 'embed',
 	attributes: {
 		id: { type: 'number', },
+		title: { type: 'string' },
+		description: { type: 'string' },
 		url: { type: 'string', },
 		width: {
 			type: 'string',
