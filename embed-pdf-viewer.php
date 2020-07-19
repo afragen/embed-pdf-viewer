@@ -14,7 +14,7 @@
  * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `object` tag or Google Doc Viewer as fallback.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           2.0.5.1
+ * Version:           2.0.5.2
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
@@ -208,7 +208,8 @@ class Embed_PDF_Viewer {
 
 		$embed  = '<figure>';
 		$embed .= $object . $iframe_fallback;
-		$embed .= '<p><a href="' . $post->guid . '">' . $atts['title'] . '</a></p></figure>';
+		$embed .= '<p><a href="' . $post->guid . '">' . $atts['title'] . '</a></p>';
+		$embed .= '</figure>';
 
 		return $embed;
 	}
