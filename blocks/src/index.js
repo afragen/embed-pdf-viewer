@@ -128,8 +128,14 @@ const renderEdit = (props) => {
 	return (
 		<Fragment>
 			<InspectorControls>
-				<PanelBody title={__('Embed size')} initialOpen={true}>
+				<PanelBody title={__('Embed PDF Viewer')} initialOpen={true}>
 					<div>
+						<TextareaControl
+							label={__('Long Description (optional)')}
+							value={undefined === description ? '' : description}
+							onChange={updateAttribute('description')}
+							help={__('Long Description used for `title` tag and accessibility.')}
+						/>
 						<TextControl
 							type="number"
 							min={20}
@@ -145,14 +151,6 @@ const renderEdit = (props) => {
 							onChange={updateAttribute('height')}
 						/>
 					</div>
-				</PanelBody>
-				<PanelBody title={__('Description')} initialOpen={true}>
-					<TextareaControl
-						label={__('Long Description (optional)')}
-						value={undefined === description ? '' : description}
-						onChange={updateAttribute('description')}
-						help={__('Long Description used for `title` tag and accessibility.')}
-					/>
 				</PanelBody>
 			</InspectorControls>
 
