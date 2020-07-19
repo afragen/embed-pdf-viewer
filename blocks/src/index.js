@@ -39,7 +39,6 @@ const renderEmbed = (props) => {
 				title={description}
 			>
 			</iframe>
-			<p><a href={url} title={description}>{title}</a></p>
 		</figure>
 	);
 }
