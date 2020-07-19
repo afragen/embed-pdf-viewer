@@ -4,7 +4,7 @@ const { __ } = wp.i18n;
 const { registerBlockType, getBlockDefaultClassName } = wp.blocks;
 const { RichText, MediaPlaceholder, MediaUpload, InspectorControls, BlockControls, BlockAlignmentToolbar } = wp.editor;
 const { Fragment } = wp.element;
-const { withNotices, IconButton, TextControl, PanelBody, Toolbar, ResizableBox } = wp.components;
+const { withNotices, IconButton, TextControl, TextareaControl, PanelBody, Toolbar, ResizableBox } = wp.components;
 const { withState } = wp.compose;
 const { isBlobURL } = wp.blob;
 
@@ -145,6 +145,14 @@ const renderEdit = (props) => {
 							onChange={updateAttribute('height')}
 						/>
 					</div>
+				</PanelBody>
+				<PanelBody title={__('Description')} initialOpen={true}>
+					<TextareaControl
+						label={__('Long Description (optional)')}
+						value={undefined === description ? '' : description}
+						onChange={updateAttribute('description')}
+						help={__('Long Description used for `title` tag and accessibility.')}
+					/>
 				</PanelBody>
 			</InspectorControls>
 
