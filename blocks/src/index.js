@@ -227,7 +227,10 @@ registerBlockType('embed-pdf-viewer/pdf', {
 	attributes: {
 		id: { type: 'number', },
 		title: { type: 'string' },
-		description: { type: 'string' },
+		description: {
+			type: 'string',
+			default: '',
+		},
 		url: { type: 'string', },
 		width: {
 			type: 'string',
