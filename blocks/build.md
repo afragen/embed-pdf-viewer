@@ -10,7 +10,7 @@ Ensure that classnames is installed.
 
 If `package.json` has the above dependencies then `npm install`
 
-`npm start`
+`npm start` for testing.
 
 `npm run build`
 

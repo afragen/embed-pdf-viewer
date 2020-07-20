@@ -20,6 +20,11 @@ Many thanks to [Alex Kirk](https://github.com/akirk) for making Embed PDF Viewer
 
 Development on [GitHub](https://github.com/afragen/embed-pdf-viewer). Pull requests are welcome against the `develop` branch.
 
+## Screenshots
+1. Embed PDF Viewer block
+2. Select PDF
+3. PDF block and attributes
+
 ## Changelog
 
 #### 2.0.5 / 2020-03-09
