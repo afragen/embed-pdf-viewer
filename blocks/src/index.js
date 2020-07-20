@@ -3,9 +3,9 @@ import icons from './icons.js';
 
 const { __ } = wp.i18n;
 const { registerBlockType, getBlockDefaultClassName } = wp.blocks;
-const { RichText, MediaPlaceholder, MediaUpload, InspectorControls, BlockControls, BlockAlignmentToolbar } = wp.editor;
+const { RichText, MediaPlaceholder, MediaUpload, InspectorControls, BlockControls, BlockAlignmentToolbar } = wp.blockEditor;
 const { Fragment } = wp.element;
-const { withNotices, IconButton, TextControl, TextareaControl, PanelBody, Toolbar, ResizableBox } = wp.components;
+const { withNotices, Button, TextControl, TextareaControl, PanelBody, Toolbar, ResizableBox } = wp.components;
 const { withState } = wp.compose;
 const { isBlobURL } = wp.blob;
 
@@ -162,7 +162,7 @@ const renderEdit = (props) => {
 				/>
 				<Toolbar>
 					{isExternal && (
-						<IconButton
+						<Button
 							className="components-icon-button components-toolbar__control"
 							label={__('Edit PDF')}
 							onClick={toggleIsEditing}
@@ -174,7 +174,7 @@ const renderEdit = (props) => {
 							onSelect={onSelectFile}
 							value={id}
 							render={({ open }) => (
-								<IconButton
+								<Button
 									className="components-toolbar__control"
 									label={__('Edit PDF')}
 									onClick={open}
