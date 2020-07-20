@@ -3,9 +3,9 @@
 Contributors: afragen, akirk
 Tags: pdf, embed, oembed, viewer, block
 Requires at least: 4.6
-Tested up to: 5.4
+Tested up to: 5.5
 Requires PHP: 5.6
-Stable tag: 2.0.5
+Stable tag: 2.1.0
 License: GPL v2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,7 +20,17 @@ Many thanks to [Alex Kirk](https://github.com/akirk) for making Embed PDF Viewer
 
 Development on [GitHub](https://github.com/afragen/embed-pdf-viewer). Pull requests are welcome against the `develop` branch.
 
+## Screenshots
+1. Embed PDF Viewer block
+2. Select PDF
+3. PDF block and attributes
+
 ## Changelog
+
+#### 2.1.0 / 2020-07-20
+* update block build process
+* add title and description attributes for a11y
+* add PDF svg for block
 
 #### 2.0.5 / 2020-03-09
 * minor updates to plugin structure on GitHub

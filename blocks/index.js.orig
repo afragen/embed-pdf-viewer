@@ -36,6 +36,7 @@ const renderEmbed = (props) => {
 				width={style.width}
 			>
 			</iframe>
+			<p><a href={url}>{url}</a></p>
 		</figure>
 	);
 }
