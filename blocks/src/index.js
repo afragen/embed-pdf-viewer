@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import icons from './icons.js';
 
 const { __ } = wp.i18n;
 const { registerBlockType, getBlockDefaultClassName } = wp.blocks;
@@ -78,7 +79,7 @@ const renderEdit = (props) => {
 	if (undefined === url || !url || hasError || isEditing) {
 		return (
 			<MediaPlaceholder
-				icon="media-document"
+				icon={icons.pdf}
 				labels={{
 					title: __('PDF'),
 					instructions: __('Drag a PDF, upload a new one or select a PDF from your library.'),
@@ -220,7 +221,7 @@ const renderEdit = (props) => {
 
 registerBlockType('embed-pdf-viewer/pdf', {
 	title: __('PDF'),
-	icon: 'media-document',
+	icon: icons.pdf,
 	category: 'embed',
 	attributes: {
 		id: { type: 'number', },

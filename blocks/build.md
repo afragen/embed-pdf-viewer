@@ -13,3 +13,8 @@ If `package.json` has the above dependencies then `npm install`
 `npm start`
 
 `npm run build`
+
+
+## Add custom SVG icon
+
+https://since1979.dev/wordpress-adding-custom-svg-icons-to-your-gutenberg-blocks-plugin/

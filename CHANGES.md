@@ -1,6 +1,7 @@
 #### [unreleased]
 * update block build process
 * add title and description attributes for a11y
+* add PDF svg for block
 
 #### 2.0.5 / 2020-03-09
 * minor updates to plugin structure on GitHub
