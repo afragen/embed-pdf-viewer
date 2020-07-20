@@ -141,13 +141,13 @@ const renderEdit = (props) => {
 							type="number"
 							min={20}
 							label={__('Width')}
-							value={undefined === width ? defaultWidth : width}
+							value={undefined === width ? embedPDFViewer.attributes.width.default : width}
 							onChange={updateAttribute('width')}
 						/>
 						<TextControl
 							type="number"
 							label={__('Height')}
-							value={undefined === height ? defaultHeight : height}
+							value={undefined === height ? embedPDFViewer.attributes.height.default : height}
 							min={1}
 							onChange={updateAttribute('height')}
 						/>
@@ -206,8 +206,8 @@ const renderEdit = (props) => {
 					}}
 					onResizeStop={(event, direction, elt, delta) => {
 						setAttributes({
-							width: parseInt(currentWidth + delta.width, 10),
-							height: parseInt(currentHeight + delta.height, 10),
+							width: parseInt(width + delta.width, 10),
+							height: parseInt(height + delta.height, 10),
 						});
 						toggleSelection(true);
 					}}
@@ -219,7 +219,7 @@ const renderEdit = (props) => {
 	);
 };
 
-registerBlockType('embed-pdf-viewer/pdf', {
+let embedPDFViewer = registerBlockType('embed-pdf-viewer/pdf', {
 	title: __('PDF'),
 	icon: icons.pdf,
 	category: 'embed',
@@ -237,7 +237,7 @@ registerBlockType('embed-pdf-viewer/pdf', {
 		},
 		height: {
 			type: 'string',
-			default: 400,
+			default: 600,
 		},
 		align: { type: 'string', },
 	},

@@ -1,5 +1,8 @@
 #### [unreleased]
 
+* update block for deprecated items and minor errors
+* update media selector for only PDFs
+
 #### 2.1.0 / 2020-07-20
 * update block build process
 * add title and description attributes for a11y
