@@ -1,5 +1,6 @@
 #### [unreleased]
 
+### 2.1.1 / 2020-07-20
 * update block for deprecated items and minor errors
 * update media selector for only PDFs
 
