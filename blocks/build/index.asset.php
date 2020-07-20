@@ -1,4 +1,4 @@
 <?php return [
 	'dependencies' => [ 'wp-element', 'wp-polyfill' ],
-	'version'      => '5280545da6d45808085f10c52d430f07',
+	'version'      => '33baed78a1774cf8c2588af106237d83',
 ];

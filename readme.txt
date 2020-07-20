@@ -5,7 +5,7 @@ Tags: pdf, embed, oembed, viewer, block
 Requires at least: 4.6
 Tested up to: 5.5
 Requires PHP: 5.6
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPL v2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,6 +26,10 @@ Development on [GitHub](https://github.com/afragen/embed-pdf-viewer). Pull reque
 3. PDF block and attributes
 
 ## Changelog
+
+### 2.1.1 / 2020-07-20
+* update block for deprecated items and minor errors
+* update media selector for only PDFs
 
 #### 2.1.0 / 2020-07-20
 * update block build process
