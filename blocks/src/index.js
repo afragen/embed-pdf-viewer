@@ -88,7 +88,7 @@ const renderEdit = (props) => {
 				onSelectURL={updateAttribute('url')}
 				notices={props.noticeUI}
 				onError={props.noticeOperations.createErrorNotice}
-				accept="application/pdf"
+				allowedTypes={['application/pdf']}
 			/>
 		);
 	}
