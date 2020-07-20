@@ -22,11 +22,14 @@ Pull requests are welcome against the `develop` branch.
 
 ## Screenshots
 ![Embed PDF Viewer block](./.wordpress-org/screenshot-1.png "Embed PDF Viewer block")
+
 Embed PDF Viewer block
 
 ![Select PDF](./.wordpress-org/screenshot-2.png "Select PDF")
+
 Select PDF
 
 
 ![PDF block and attributes](./.wordpress-org/screenshot-3.png "PDF block and attributes")
+
 PDF block and attributes
