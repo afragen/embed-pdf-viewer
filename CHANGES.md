@@ -1,6 +1,5 @@
 #### [unreleased]
 * use same _block name_ for oembed
-* add additional dependencies to block script enqueue
 
 ### 2.1.1 / 2020-07-20
 * update block for deprecated items and minor errors
