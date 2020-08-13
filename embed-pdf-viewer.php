@@ -14,7 +14,7 @@
  * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `object` tag or Google Doc Viewer as fallback.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           2.1.1
+ * Version:           2.1.1.1
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
@@ -95,13 +95,13 @@ class Embed_PDF_Viewer {
 		wp_register_script(
 			'embed-pdf-viewer',
 			plugins_url( 'blocks/build/index.js', __FILE__ ),
-			[ 'wp-blocks', 'wp-element' ],
+			[ 'wp-blocks', 'wp-blockeditor', 'wp-element', 'wp-components', 'wp-compose', 'wp-blob' ],
 			false,
 			true
 		);
 
 		register_block_type(
-			'embed-pdf-viewer/index',
+			'embed-pdf-viewer/pdf',
 			[
 				'editor_script' => 'embed-pdf-viewer',
 			]
