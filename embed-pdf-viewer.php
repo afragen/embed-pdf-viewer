@@ -95,7 +95,7 @@ class Embed_PDF_Viewer {
 		wp_register_script(
 			'embed-pdf-viewer',
 			plugins_url( 'blocks/build/index.js', __FILE__ ),
-			[ 'wp-blocks', 'wp-element' ],
+			[ 'wp-blocks', 'wp-element', 'wp-components', 'wp-compose', 'wp-blob' ],
 			false,
 			true
 		);
