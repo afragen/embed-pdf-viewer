@@ -1,5 +1,9 @@
 #### [unreleased]
 
+#### 2.1.2 / 2020-09-15
+* use same _block name_ for oembed
+* add additional dependencies to enqueue
+
 ### 2.1.1 / 2020-07-20
 * update block for deprecated items and minor errors
 * update media selector for only PDFs
