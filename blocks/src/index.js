@@ -5,14 +5,14 @@ const { __ } = wp.i18n;
 const { registerBlockType, getBlockDefaultClassName } = wp.blocks;
 const { RichText, MediaPlaceholder, MediaUpload, InspectorControls, BlockControls, BlockAlignmentToolbar } = wp.blockEditor;
 const { Fragment } = wp.element;
-const { withNotices, Button, TextControl, TextareaControl, PanelBody, Toolbar, ResizableBox } = wp.components;
+const { withNotices, Button, TextControl, TextareaControl, PanelBody, ToolbarGroup, ToolbarButton, ResizableBox } = wp.components;
 const { withState } = wp.compose;
 const { isBlobURL } = wp.blob;
 
 const isExternalPDF = (id, url) => url && !id && !isBlobURL(url);
 
 const renderEmbed = (props) => {
-	const { attributes: { title, description, url, width, height } } = props;
+	const { attributes: { title, description, url, width, height, align } } = props;
 	const style = { width, height };
 	const myClassName = getBlockDefaultClassName('embed-pdf-viewer/pdf');
 
@@ -161,10 +161,10 @@ const renderEdit = (props) => {
 					value={align}
 					onChange={updateAttribute('align')}
 				/>
-				<Toolbar>
+				<ToolbarGroup>
 					{isExternal && (
-						<Button
-							className="components-icon-button components-toolbar__control"
+						<ToolbarButton
+							className="components-icon-button"
 							label={__('Edit PDF')}
 							onClick={toggleIsEditing}
 							icon="edit"
@@ -184,7 +184,7 @@ const renderEdit = (props) => {
 							)}
 						/>
 					)}
-				</Toolbar>
+				</ToolbarGroup>
 			</BlockControls>
 
 			<div className={classes}>
@@ -240,7 +240,9 @@ let embedPDFViewer = registerBlockType('embed-pdf-viewer/pdf', {
 			type: 'string',
 			default: 600,
 		},
-		align: { type: 'string', },
+		supports: {
+			align: true,
+		},
 	},
 
 	getEditWrapperProps(attributes) {
