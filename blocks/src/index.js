@@ -160,6 +160,7 @@ const renderEdit = (props) => {
 				<BlockAlignmentToolbar
 					value={align}
 					onChange={updateAttribute('align')}
+					controls={['left', 'center', 'right']}
 				/>
 				<ToolbarGroup>
 					{isExternal && (
@@ -240,9 +241,12 @@ let embedPDFViewer = registerBlockType('embed-pdf-viewer/pdf', {
 			type: 'string',
 			default: 600,
 		},
-		align: { type: 'string' },
+		align: {
+			type: 'string',
+			default: 'center',
+		},
 		supports: {
-			align: true,
+			align: ['left', 'center', 'right'],
 		},
 	},
 
