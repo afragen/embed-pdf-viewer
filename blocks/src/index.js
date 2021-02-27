@@ -21,7 +21,7 @@ const renderEmbed = (props) => {
 	}
 
 	return (
-		<figure className={`${myClassName}__content-wrapper`}>
+		<figure className={`${myClassName}__content-wrapper align${align}`}>
 			<object
 				className="embed-pdf-viewer"
 				data={url + '#scrollbar=1&toolbar=1'}
@@ -240,6 +240,7 @@ let embedPDFViewer = registerBlockType('embed-pdf-viewer/pdf', {
 			type: 'string',
 			default: 600,
 		},
+		align: { type: 'string' },
 		supports: {
 			align: true,
 		},
