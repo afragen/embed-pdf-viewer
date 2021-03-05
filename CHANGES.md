@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 2.2.0 / 2021-03-05
 * update Toolbar to ToolbarGroup and ToolbarButton
 * add limited support for block alignment toolbar
 
