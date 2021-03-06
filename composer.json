@@ -34,7 +34,7 @@
     },
     "scripts": {
         "post-update-cmd": [
-            "wp i18n make-pot . languages/embed-pdf-viewer.pot"
+            "wp i18n make-pot . languages/embed-pdf-viewer.pot --exclude='/blocks/build'"
         ]
     }
 }
