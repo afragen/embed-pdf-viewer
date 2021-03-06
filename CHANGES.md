@@ -3,6 +3,7 @@
 #### 2.2.0 / 2021-03-05
 * update Toolbar to ToolbarGroup and ToolbarButton
 * add limited support for block alignment toolbar
+* fixes for i18n in block
 
 #### 2.1.2 / 2020-09-15
 * use same _block name_ for oembed
