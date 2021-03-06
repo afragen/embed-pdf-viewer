@@ -31,7 +31,7 @@ Development on [GitHub](https://github.com/afragen/embed-pdf-viewer). Pull reque
 * update Toolbar to ToolbarGroup and ToolbarButton
 * add limited support for block alignment toolbar
 * fixes for i18n in block
-* exclude `/blocks/build` from `make-pot`, doesn't work with minimized JS
+* exclude `/build` from `make-pot` in `composer.json`, doesn't work with minimized JS
 
 #### 2.1.2 / 2020-09-15
 * use same _block name_ for oembed
