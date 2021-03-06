@@ -3,9 +3,9 @@
 Contributors: afragen, akirk
 Tags: pdf, embed, oembed, viewer, block
 Requires at least: 4.6
-Tested up to: 5.6
+Tested up to: 5.7
 Requires PHP: 5.6
-Stable tag: 2.1.2
+Stable tag: 2.2.0
 License: GPL v2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,6 +26,12 @@ Development on [GitHub](https://github.com/afragen/embed-pdf-viewer). Pull reque
 3. PDF block and attributes
 
 ## Changelog
+
+#### 2.2.0 / 2021-03-05
+* update Toolbar to ToolbarGroup and ToolbarButton
+* add limited support for block alignment toolbar
+* fixes for i18n in block
+* exclude `/blocks/build` from `make-pot`, doesn't work with minimized JS
 
 #### 2.1.2 / 2020-09-15
 * use same _block name_ for oembed

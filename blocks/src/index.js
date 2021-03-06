@@ -5,14 +5,14 @@ const { __ } = wp.i18n;
 const { registerBlockType, getBlockDefaultClassName } = wp.blocks;
 const { RichText, MediaPlaceholder, MediaUpload, InspectorControls, BlockControls, BlockAlignmentToolbar } = wp.blockEditor;
 const { Fragment } = wp.element;
-const { withNotices, Button, TextControl, TextareaControl, PanelBody, Toolbar, ResizableBox } = wp.components;
+const { withNotices, Button, TextControl, TextareaControl, PanelBody, ToolbarGroup, ToolbarButton, ResizableBox } = wp.components;
 const { withState } = wp.compose;
 const { isBlobURL } = wp.blob;
 
 const isExternalPDF = (id, url) => url && !id && !isBlobURL(url);
 
 const renderEmbed = (props) => {
-	const { attributes: { title, description, url, width, height } } = props;
+	const { attributes: { title, description, url, width, height, align } } = props;
 	const style = { width, height };
 	const myClassName = getBlockDefaultClassName('embed-pdf-viewer/pdf');
 
@@ -21,7 +21,7 @@ const renderEmbed = (props) => {
 	}
 
 	return (
-		<figure className={`${myClassName}__content-wrapper`}>
+		<figure className={`${myClassName}__content-wrapper align${align}`}>
 			<object
 				className="embed-pdf-viewer"
 				data={url + '#scrollbar=1&toolbar=1'}
@@ -42,7 +42,7 @@ const renderEmbed = (props) => {
 			</iframe>
 		</figure>
 	);
-}
+};
 
 const renderEdit = (props) => {
 	const { attributes: { id, title, description, url, width, height, align }, setAttributes, isEditing, hasError, setState, className, media, noticeUI, noticeOperations, toggleSelection, isRTL } = props;
@@ -81,8 +81,8 @@ const renderEdit = (props) => {
 			<MediaPlaceholder
 				icon={icons.pdf}
 				labels={{
-					title: __('PDF'),
-					instructions: __('Drag a PDF, upload a new one or select a PDF from your library.'),
+					title: __('PDF', 'embed-pdf-viewer'),
+					instructions: __('Drag a PDF, upload a new one or select a PDF from your library.', 'embed-pdf-viewer'),
 				}}
 				onSelect={onSelectFile}
 				onSelectURL={updateAttribute('url')}
@@ -130,24 +130,24 @@ const renderEdit = (props) => {
 	return (
 		<Fragment>
 			<InspectorControls>
-				<PanelBody title={__('Embed PDF Viewer')} initialOpen={true}>
+				<PanelBody title={__('Embed PDF Viewer', 'embed-pdf-viewer')} initialOpen={true}>
 					<div>
 						<TextareaControl
-							label={__('Long Description (optional)')}
+							label={__('Long Description (optional)', 'embed-pdf-viewer')}
 							value={undefined === description ? '' : description}
 							onChange={updateAttribute('description')}
-							help={__('Long Description used for `title` tag and accessibility.')}
+							help={__('Long Description used for `title` tag and accessibility.', 'embed-pdf-viewer')}
 						/>
 						<TextControl
 							type="number"
 							min={20}
-							label={__('Width')}
+							label={__('Width', 'embed-pdf-viewer')}
 							value={undefined === width ? embedPDFViewer.attributes.width.default : width}
 							onChange={updateAttribute('width')}
 						/>
 						<TextControl
 							type="number"
-							label={__('Height')}
+							label={__('Height', 'embed-pdf-viewer')}
 							value={undefined === height ? embedPDFViewer.attributes.height.default : height}
 							min={1}
 							onChange={updateAttribute('height')}
@@ -160,12 +160,13 @@ const renderEdit = (props) => {
 				<BlockAlignmentToolbar
 					value={align}
 					onChange={updateAttribute('align')}
+					controls={['left', 'center', 'right']}
 				/>
-				<Toolbar>
+				<ToolbarGroup>
 					{isExternal && (
-						<Button
-							className="components-icon-button components-toolbar__control"
-							label={__('Edit PDF')}
+						<ToolbarButton
+							className="components-icon-button"
+							label={__('Edit PDF', 'embed-pdf-viewer')}
 							onClick={toggleIsEditing}
 							icon="edit"
 						/>
@@ -177,14 +178,14 @@ const renderEdit = (props) => {
 							render={({ open }) => (
 								<Button
 									className="components-toolbar__control"
-									label={__('Edit PDF')}
+									label={__('Edit PDF', 'embed-pdf-viewer')}
 									onClick={open}
 									icon="edit"
 								/>
 							)}
 						/>
 					)}
-				</Toolbar>
+				</ToolbarGroup>
 			</BlockControls>
 
 			<div className={classes}>
@@ -221,7 +222,7 @@ const renderEdit = (props) => {
 };
 
 let embedPDFViewer = registerBlockType('embed-pdf-viewer/pdf', {
-	title: __('PDF'),
+	title: __('PDF', 'embed-pdf-viewer'),
 	icon: icons.pdf,
 	category: 'embed',
 	attributes: {
@@ -240,7 +241,13 @@ let embedPDFViewer = registerBlockType('embed-pdf-viewer/pdf', {
 			type: 'string',
 			default: 600,
 		},
-		align: { type: 'string', },
+		align: {
+			type: 'string',
+			default: 'center',
+		},
+		supports: {
+			align: ['left', 'center', 'right'],
+		},
 	},
 
 	getEditWrapperProps(attributes) {

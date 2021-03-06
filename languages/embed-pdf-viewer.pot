@@ -1,20 +1,21 @@
-# Copyright (C) 2020 Andy Fragen
-# This file is distributed under the same license as the Embed PDF Viewer plugin.
+# Copyright (C) 2021 Andy Fragen
+# This file is distributed under the GPLv2+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Embed PDF Viewer 2.1.2\n"
+"Project-Id-Version: Embed PDF Viewer 2.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/embed-pdf-viewer\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-09-15T21:15:51+00:00\n"
+"POT-Creation-Date: 2021-03-06T06:29:38+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.4.0\n"
+"X-Generator: WP-CLI 2.5.0-alpha\n"
 "X-Domain: embed-pdf-viewer\n"
 
 #. Plugin Name of the plugin
+#: blocks/src/index.js:133
 msgid "Embed PDF Viewer"
 msgstr ""
 
@@ -32,4 +33,34 @@ msgstr ""
 
 #. Author URI of the plugin
 msgid "https://github.com/afragen"
+msgstr ""
+
+#: blocks/src/index.js:84
+#: blocks/src/index.js:225
+msgid "PDF"
+msgstr ""
+
+#: blocks/src/index.js:85
+msgid "Drag a PDF, upload a new one or select a PDF from your library."
+msgstr ""
+
+#: blocks/src/index.js:136
+msgid "Long Description (optional)"
+msgstr ""
+
+#: blocks/src/index.js:139
+msgid "Long Description used for `title` tag and accessibility."
+msgstr ""
+
+#: blocks/src/index.js:144
+msgid "Width"
+msgstr ""
+
+#: blocks/src/index.js:150
+msgid "Height"
+msgstr ""
+
+#: blocks/src/index.js:169
+#: blocks/src/index.js:181
+msgid "Edit PDF"
 msgstr ""
