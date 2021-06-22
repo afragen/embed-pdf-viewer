@@ -1,4 +1,5 @@
 #### [unreleased]
+* add @10up GitHub Actions integration for WordPress SVN
 
 #### 2.2.0 / 2021-03-05
 * update Toolbar to ToolbarGroup and ToolbarButton
