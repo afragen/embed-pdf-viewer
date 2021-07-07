@@ -3,5 +3,9 @@
 .gitattributes export-ignore
 .gitignore export-ignore
 composer.lock export-ignore
-.svnignore export-ignore
-.wordpress-org export-ignore
+/.wordpress-org export-ignore
+/.github export-ignore
+/blocks/.babelrc export-ignore
+/blocks/.gitignore export-ignore
+/blocks/webpack.config.js export-ignore
+/blocks/package-lock.json export-ignore
