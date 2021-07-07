@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 2.3.0 / 2021-07-07
 * add @10up GitHub Actions integration for WordPress SVN
 
 #### 2.2.0 / 2021-03-05

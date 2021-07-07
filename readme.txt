@@ -3,9 +3,9 @@
 Contributors: afragen, akirk
 Tags: pdf, embed, oembed, viewer, block
 Requires at least: 4.6
-Tested up to: 5.7
+Tested up to: 5.8
 Requires PHP: 5.6
-Stable tag: 2.2.0
+Stable tag: 2.3.0
 License: GPL v2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,6 +26,9 @@ Development on [GitHub](https://github.com/afragen/embed-pdf-viewer). Pull reque
 3. PDF block and attributes
 
 ## Changelog
+
+#### 2.3.0 / 2021-07-07
+* add @10up GitHub Actions integration for WordPress SVN
 
 #### 2.2.0 / 2021-03-05
 * update Toolbar to ToolbarGroup and ToolbarButton
