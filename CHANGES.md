@@ -1,5 +1,9 @@
 #### [unreleased]
 
+#### 2.3.1 / 2023-09-10
+* update GA
+* update tested to
+
 #### 2.3.0 / 2021-07-07
 * add @10up GitHub Actions integration for WordPress SVN
 
