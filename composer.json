@@ -33,7 +33,7 @@
         "php": ">=5.6"
     },
     "scripts": {
-        "post-update-cmd": [
+        "make-pot": [
             "wp i18n make-pot . languages/embed-pdf-viewer.pot --exclude='/build'"
         ]
     }
