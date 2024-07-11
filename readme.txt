@@ -3,7 +3,7 @@
 Contributors: afragen, akirk
 Tags: pdf, embed, oembed, viewer, block
 Requires at least: 4.6
-Tested up to: 6.3
+Tested up to: 6.6
 Requires PHP: 5.6
 Stable tag: 2.3.1
 License: GPL v2+
