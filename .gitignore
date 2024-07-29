@@ -3,3 +3,8 @@
 /vendor
 /blocks/node_modules
 /blocks/package-lock.json
+
+vendor/bin
+vendor/dealerdirect
+vendor/squizlabs
+vendor/wp-coding-standards
