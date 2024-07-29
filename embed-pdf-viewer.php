@@ -202,7 +202,7 @@ class Embed_PDF_Viewer {
 			: ucwords( preg_replace( '/(-|_)/', ' ', $atts['title'] ) );
 		$atts['description'] = empty( $atts['description'] ) ? $atts['title'] : $atts['description'];
 
-		$iframe_fallback  = '<iframe sandbox class="embed-pdf-viewer" src="https://docs.google.com/viewer?url=' . rawurlencode( $post->guid );
+		$iframe_fallback  = '<iframe class="embed-pdf-viewer" src="https://docs.google.com/viewer?url=' . rawurlencode( $post->guid );
 		$iframe_fallback .= '&amp;embedded=true" frameborder="0" ';
 		$iframe_fallback .= 'style="height:' . $atts['height'] . 'px;width:' . $atts['width'] . 'px;" ';
 		$iframe_fallback .= 'title="' . $atts['description'] . '"></iframe>' . "\n";
