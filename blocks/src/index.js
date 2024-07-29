@@ -3,7 +3,7 @@ import icons from './icons.js';
 
 const { __ } = wp.i18n;
 const { registerBlockType, getBlockDefaultClassName } = wp.blocks;
-const { RichText, MediaPlaceholder, MediaUpload, InspectorControls, BlockControls, BlockAlignmentToolbar } = wp.blockEditor;
+const { RichText, MediaPlaceholder, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls, BlockAlignmentToolbar } = wp.blockEditor;
 const { Fragment } = wp.element;
 const { withNotices, Button, TextControl, TextareaControl, PanelBody, ToolbarGroup, ToolbarButton, ResizableBox } = wp.components;
 const { withState } = wp.compose;
@@ -172,18 +172,20 @@ const renderEdit = (props) => {
 						/>
 					)}
 					{!isExternal && (
-						<MediaUpload
-							onSelect={onSelectFile}
-							value={id}
-							render={({ open }) => (
-								<Button
-									className="components-toolbar__control"
-									label={__('Edit PDF', 'embed-pdf-viewer')}
-									onClick={open}
-									icon="edit"
-								/>
-							)}
-						/>
+						<MediaUploadCheck>
+							<MediaUpload
+								onSelect={onSelectFile}
+								value={id}
+								render={({ open }) => (
+									<Button
+										className="components-toolbar__control"
+										label={__('Edit PDF', 'embed-pdf-viewer')}
+										onClick={open}
+										icon="edit"
+									/>
+								)}
+							/>
+						</MediaUploadCheck>
 					)}
 				</ToolbarGroup>
 			</BlockControls>
