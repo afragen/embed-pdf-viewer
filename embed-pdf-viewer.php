@@ -133,7 +133,7 @@ class Embed_PDF_Viewer {
 	 * @param array  $atts    array of media height/width.
 	 * @param string $url     URI for media file.
 	 *
-	 * @return string
+	 * @return string|WP_Error
 	 */
 	public function oembed_pdf_viewer( $matches, $atts, $url ) {
 		$attachment_id = $this->get_attachment_id_by_url( $url );
@@ -143,9 +143,13 @@ class Embed_PDF_Viewer {
 			/*
 			 * URL is from outside of the Media Library.
 			 */
+			$response = wp_remote_get( $url );
+			if ( is_wp_error( $response ) ) {
+				return $response;
+			}
 			$post                 = new WP_Post( new stdClass() );
 			$post->guid           = $matches[0];
-			$post->post_mime_type = 'application/pdf';
+			$post->post_mime_type = wp_remote_retrieve_header( $response, 'content-type' );
 			$post->post_name      = preg_replace( '/\.pdf$/', '', basename( $matches[0] ) );
 		}
 
