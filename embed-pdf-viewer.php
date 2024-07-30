@@ -98,6 +98,8 @@ class Embed_PDF_Viewer {
 	 * @return void
 	 */
 	public function register_block() {
+		global $is_chrome;
+
 		if ( ! function_exists( 'register_block_type' ) ) {
 			return;
 		}
@@ -176,6 +178,8 @@ class Embed_PDF_Viewer {
 	 * @return bool|string
 	 */
 	private function create_output( WP_Post $post, $atts = [] ) {
+		global $is_chrome;
+
 		if ( 'application/pdf' !== $post->post_mime_type ) {
 			return $atts;
 		}
@@ -207,12 +211,16 @@ class Embed_PDF_Viewer {
 		$atts = apply_filters( 'embed_pdf_viewer_pdf_attributes', $atts );
 
 		// Fix title or create from filename.
-		$atts['title']       = empty( $atts['title'] )
+		$atts['title'] = empty( $atts['title'] )
 			? ucwords( preg_replace( '/(-|_)/', ' ', $post->post_name ) )
 			: ucwords( preg_replace( '/(-|_)/', ' ', $atts['title'] ) );
 
-		$iframe = '<iframe class="embed-pdf-viewer" src="' . $post->guid . '" ';
-		// $iframe .= 'sandbox="" ';
+		if ( $is_chrome ) {
+			$iframe  = '<iframe class="embed-pdf-viewer" src="https://docs.google.com/viewer?url=' . rawurlencode( $post->guid );
+			$iframe .= '&amp;embedded=true" frameborder="0" ';
+		} else {
+			$iframe = '<iframe class="embed-pdf-viewer" src="' . $post->guid . '" ';
+		}
 		$iframe .= 'height="' . $atts['height'] . '" width="' . $atts['width'] . '" ';
 		$iframe .= 'title="' . $atts['title'] . '"></iframe>' . "\n";
 

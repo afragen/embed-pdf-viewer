@@ -25,7 +25,8 @@ const renderEmbed = (props) => {
 			<iframe
 				className="embed-pdf-viewer"
 				src={url}
-				// sandbox=""
+				//src={'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true'}
+				//frameBorder="0"
 				height={style.height}
 				width={style.width}
 				title={title}
