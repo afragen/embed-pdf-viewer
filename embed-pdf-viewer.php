@@ -31,18 +31,19 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-add_filter( 'media_send_to_editor', [ Embed_PDF_Viewer::instance(), 'embed_pdf_media_editor' ], 20, 2 );
+$epd_version = get_file_data( __FILE__, [ 'Version' => 'version' ] )['Version'];
+add_filter( 'media_send_to_editor', [ Embed_PDF_Viewer::instance( $epd_version ), 'embed_pdf_media_editor' ], 20, 2 );
 wp_embed_register_handler(
 	'oembed_pdf_viewer',
 	'#(^(https?)\:\/\/.+\.pdf$)#i',
 	[
-		Embed_PDF_Viewer::instance(),
+		Embed_PDF_Viewer::instance( $epd_version ),
 		'oembed_pdf_viewer',
 	]
 );
 add_action(
 	'init',
-	function () {
+	function () use ( $epd_version ) {
 		load_plugin_textdomain( 'embed-pdf-viewer' );
 		wp_set_script_translations( 'embed-pdf-viewer-scripts', 'embed-pdf-viewer' );
 
@@ -51,12 +52,12 @@ add_action(
 			'embed-pdf-viewer',
 			plugins_url( 'css/embed-pdf-viewer.css', __FILE__ ),
 			[],
-			time(),
+			$epd_version,
 			'screen'
 		);
 	}
 );
-add_action( 'init', [ Embed_PDF_Viewer::instance(), 'register_block' ] );
+add_action( 'init', [ Embed_PDF_Viewer::instance( $epd_version ), 'register_block' ] );
 
 /**
  * Class Embed_PDF_Viewer
@@ -70,13 +71,22 @@ class Embed_PDF_Viewer {
 	private static $instance = false;
 
 	/**
+	 * Plugin version number.
+	 *
+	 * @var string
+	 */
+	private static $version = '';
+
+	/**
 	 * Create singleton.
 	 *
+	 * @param string $version Plugin version number.
 	 * @return bool
 	 */
-	public static function instance() {
+	public static function instance( $version ) {
+		static::$version = $version;
 		if ( false === self::$instance ) {
-			self::$instance = new self();
+			self::$instance = new self( $version );
 		}
 
 		return self::$instance;
@@ -97,7 +107,7 @@ class Embed_PDF_Viewer {
 			'embed-pdf-viewer',
 			plugins_url( 'blocks/build/index.js', __FILE__ ),
 			[ 'wp-i18n', 'wp-blocks', 'wp-block-editor', 'wp-element', 'wp-components', 'wp-compose', 'wp-blob' ],
-			false,
+			static::$version,
 			true
 		);
 
