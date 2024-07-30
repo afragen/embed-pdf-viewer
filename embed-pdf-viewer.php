@@ -51,7 +51,7 @@ add_action(
 			'embed-pdf-viewer',
 			plugins_url( 'css/embed-pdf-viewer.css', __FILE__ ),
 			[],
-			false,
+			time(),
 			'screen'
 		);
 	}
