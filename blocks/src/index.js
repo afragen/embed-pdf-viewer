@@ -21,26 +21,17 @@ const renderEmbed = (props) => {
 	}
 
 	return (
-		<figure className={`${myClassName}__content-wrapper align${align}`}>
-			<object
-				className="embed-pdf-viewer"
-				data={url + '#scrollbar=1&toolbar=1'}
-				type="application/pdf"
-				height={style.height}
-				width={style.width}
-				title={description}
-			>
-			</object>
+		<div className={`${myClassName}__content-wrapper align${align}`}>
 			<iframe
 				className="embed-pdf-viewer"
-				src={'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true'}
-				frameBorder="0"
+				src={url}
+				// sandbox=""
 				height={style.height}
 				width={style.width}
-				title={description}
+				title={title}
 			>
 			</iframe>
-		</figure>
+		</div>
 	);
 };
 

@@ -1,4 +1,5 @@
 #### [unreleased]
+* convert to only use `iframe` and not Google Doc Viewer
 
 #### 2.3.1 / 2023-09-10
 * update GA

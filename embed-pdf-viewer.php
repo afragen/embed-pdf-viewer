@@ -11,10 +11,10 @@
 /**
  * Plugin Name:       Embed PDF Viewer
  * Plugin URI:        https://github.com/afragen/embed-pdf-viewer
- * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `object` tag or Google Doc Viewer as fallback.
+ * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `iframe` tag.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           2.3.1
+ * Version:           2.3.1.1
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
@@ -182,8 +182,8 @@ class Embed_PDF_Viewer {
 		 */
 		$atts = is_array( $atts ) ? $atts : [];
 
-		if ( isset( $atts['height'] ) ) {
-			$atts['height'] = ( $atts['height'] / 2 );
+		if ( isset( $atts['width'] ) ) {
+			$atts['width'] = '100%';
 		}
 		$atts = array_merge( $default, $atts );
 
@@ -200,24 +200,16 @@ class Embed_PDF_Viewer {
 		$atts['title']       = empty( $atts['title'] )
 			? ucwords( preg_replace( '/(-|_)/', ' ', $post->post_name ) )
 			: ucwords( preg_replace( '/(-|_)/', ' ', $atts['title'] ) );
-		$atts['description'] = empty( $atts['description'] ) ? $atts['title'] : $atts['description'];
 
-		$iframe_fallback  = '<iframe class="embed-pdf-viewer" src="https://docs.google.com/viewer?url=' . rawurlencode( $post->guid );
-		$iframe_fallback .= '&amp;embedded=true" frameborder="0" ';
-		$iframe_fallback .= 'style="height:' . $atts['height'] . 'px;width:' . $atts['width'] . 'px;" ';
-		$iframe_fallback .= 'title="' . $atts['description'] . '"></iframe>' . "\n";
+		$iframe = '<iframe class="embed-pdf-viewer" src="' . $post->guid . '" ';
+		// $iframe .= 'sandbox="" ';
+		$iframe .= 'height="' . $atts['height'] . '" width="' . $atts['width'] . '" ';
+		$iframe .= 'title="' . $atts['title'] . '"></iframe>' . "\n";
 
-		$object  = '<object class="embed-pdf-viewer" data="' . $post->guid;
-		$object .= '#scrollbar=1&toolbar=1"';
-		$object .= 'type="application/pdf" ';
-		$object .= 'height=' . $atts['height'] . ' width=' . $atts['width'] . ' ';
-		$object .= 'title="' . $atts['description'] . '"> ';
-		$object .= '</object>';
-
-		$embed  = '<figure>';
-		$embed .= $object . $iframe_fallback;
-		$embed .= '<p><a href="' . $post->guid . '" title="' . $atts['description'] . '">' . $atts['title'] . '</a></p>';
-		$embed .= '</figure>';
+		$embed  = '<div>';
+		$embed .= $iframe;
+		$embed .= '<p><a href="' . $post->guid . '" title="' . $atts['title'] . '">' . $atts['title'] . '</a></p>';
+		$embed .= '</div>';
 
 		return $embed;
 	}
