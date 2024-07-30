@@ -125,7 +125,7 @@ const renderEdit = (props) => {
 					<div>
 						<TextareaControl
 							label={__('Long Description (optional)', 'embed-pdf-viewer')}
-							value={undefined === description ? '' : description}
+							value={undefined === title ? '' : title}
 							onChange={updateAttribute('description')}
 							help={__('Long Description used for `title` tag and accessibility.', 'embed-pdf-viewer')}
 						/>
