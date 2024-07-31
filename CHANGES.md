@@ -1,5 +1,6 @@
 #### [unreleased]
-* convert to only use `iframe` and not Google Doc Viewer
+* convert to only use `iframe` and use Google Doc Viewer for Chrome
+* dynamically render `iframe` in block based on browser
 
 #### 2.3.1 / 2023-09-10
 * update GA
