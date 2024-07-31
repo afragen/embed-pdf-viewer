@@ -11,7 +11,7 @@
 Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `iframe` tag .
 
 ## Description
-Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `iframe` tag. The URL only has to be world reachable link. Chrome uses Google Doc Viewer as Chrome seems to automatically rendered embedded JS in PDFs automatically.
+Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `iframe` tag. The URL only has to be world reachable link. Chrome uses Google Doc Viewer as Chrome seems to automatically rendered embedded JS in PDFs automatically. Uses Google Doc Viewer with mobile.
 
 Inspired by [Embed PDF](https://wordpress.org/plugins/dirtysuds-embed-pdf/) and [RV Embed PDF](https://wordpress.org/plugins/rv-embed-pdf/).
 

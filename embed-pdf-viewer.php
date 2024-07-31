@@ -14,7 +14,7 @@
  * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `iframe` tag.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           2.3.1.2
+ * Version:           2.3.1.3
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
@@ -98,8 +98,6 @@ class Embed_PDF_Viewer {
 	 * @return void
 	 */
 	public function register_block() {
-		global $is_chrome;
-
 		if ( ! function_exists( 'register_block_type' ) ) {
 			return;
 		}
@@ -125,6 +123,8 @@ class Embed_PDF_Viewer {
 	/**
 	 * Dynanically render callback based on browser.
 	 *
+	 * @global bool $is_chrome Tests for Chrome browser.
+	 *
 	 * @param array $attributes Array of attributes.
 	 *
 	 * @return string
@@ -138,7 +138,7 @@ class Embed_PDF_Viewer {
 		}
 
 		$classes = 'embed-pdf-viewer';
-		$src     = $is_chrome ? 'https://docs.google.com/viewer?url=' . rawurlencode( $url ) . '&embedded=true' : $url;
+		$src     = $is_chrome || wp_is_mobile() ? 'https://docs.google.com/viewer?url=' . rawurlencode( $url ) . '&embedded=true' : $url;
 		return sprintf(
 			'<iframe class="%1$s" src="%2$s" height="%3$s" width="%4$s" title="%5$s"%6$s></iframe>',
 			$classes,
@@ -146,7 +146,7 @@ class Embed_PDF_Viewer {
 			$attributes['width'] ?? '600',
 			$attributes['height'] ?? '600',
 			$attributes['title'] ?? '',
-			$is_chrome ? ' frameborder="0"' : ''
+			$is_chrome || wp_is_mobile() ? ' frameborder="0"' : ''
 		);
 	}
 
@@ -244,7 +244,7 @@ class Embed_PDF_Viewer {
 			? ucwords( preg_replace( '/(-|_)/', ' ', $post->post_name ) )
 			: ucwords( preg_replace( '/(-|_)/', ' ', $atts['title'] ) );
 
-		if ( $is_chrome ) {
+		if ( $is_chrome || wp_is_mobile() ) {
 			$iframe  = '<iframe class="embed-pdf-viewer" src="https://docs.google.com/viewer?url=' . rawurlencode( $post->guid );
 			$iframe .= '&amp;embedded=true" frameborder="0" ';
 		} else {
