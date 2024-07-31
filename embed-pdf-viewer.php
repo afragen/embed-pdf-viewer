@@ -85,11 +85,11 @@ class Embed_PDF_Viewer {
 	 */
 	public static function instance( $version ) {
 		static::$version = $version;
-		if ( false === self::$instance ) {
-			self::$instance = new self( $version );
+		if ( false === static::$instance ) {
+			static::$instance = new self( $version );
 		}
 
-		return self::$instance;
+		return static::$instance;
 	}
 
 	/**
