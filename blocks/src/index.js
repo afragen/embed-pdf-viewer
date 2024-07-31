@@ -254,5 +254,5 @@ let embedPDFViewer = registerBlockType('embed-pdf-viewer/pdf', {
 	},
 
 	edit: withNotices(withState({ isEditing: false, hasError: false })(renderEdit)),
-	//save: renderEmbed,
+	// save: renderEmbed,
 });
