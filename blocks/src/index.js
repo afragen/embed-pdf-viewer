@@ -15,6 +15,9 @@ const renderEmbed = (props) => {
 	const { attributes: { title, description, url, width, height, align } } = props;
 	const style = { width, height };
 	const myClassName = getBlockDefaultClassName('embed-pdf-viewer/pdf');
+	const isChrome = navigator && navigator?.userAgent && navigator.userAgent.toLowerCase().includes('chrome');
+	const classNames = "embed-pdf-viewer";
+	const src = isChrome && 'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true' || url;
 
 	if (undefined === url || !url) {
 		return null;
@@ -23,20 +26,12 @@ const renderEmbed = (props) => {
 	return (
 		<div className={`${myClassName}__content-wrapper align${align}`}>
 			<iframe
-				className="embed-pdf-viewer google-doc-viewer"
-				src={'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true'}
-				frameBorder="0"
+				className={classNames}
+				src={src}
 				height={style.height}
 				width={style.width}
 				title={title}
-			>
-			</iframe>
-			<iframe
-				className="embed-pdf-viewer not-google-doc-viewer"
-				src={url}
-				height={style.height}
-				width={style.width}
-				title={title}
+				{...(isChrome && { frameBorder: "0" })}
 			>
 			</iframe>
 		</div>

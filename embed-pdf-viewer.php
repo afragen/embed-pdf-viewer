@@ -117,6 +117,26 @@ class Embed_PDF_Viewer {
 			'embed-pdf-viewer/pdf',
 			[
 				'editor_script' => 'embed-pdf-viewer',
+				'render_callback' => function ( $attributes ) {
+					global $is_chrome;
+
+					$url = $attributes['url'] ?? null;
+					if ( ! $url ) {
+						return '';
+					}
+
+					$classes = "embed-pdf-viewer";
+					$src = $is_chrome ? 'https://docs.google.com/viewer?url=' . urlencode( $url ) . '&embedded=true' : $url;
+					return sprintf(
+						'<iframe class="%1$s" src="%2$s" height="%3$s" width="%4$s" title="%5$s"%6$s></iframe>',
+						$classes,
+						$src,
+						$attributes['width'] ?? "600",
+						$attributes['height'] ?? "600",
+						$attributes['title'] ?? '',
+						$is_chrome ? ' frameborder="0"' : ''
+					);
+				},
 			]
 		);
 	}
