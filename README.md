@@ -1,6 +1,6 @@
 # Embed PDF Viewer
 
-* Contributors: afragen, akirk
+* Contributors: afragen, akirk, costdev
 * Tags: pdf, embed, oembed, viewer, block
 * Requires at least: 4.6
 * Requires PHP: 5.6
