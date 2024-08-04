@@ -1,10 +1,9 @@
 {
     "name": "afragen/embed-pdf-viewer",
-    "description": "Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `object` tag or Google Doc Viewer as fallback.",
+    "description": "Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `iframe` tag or Google Doc Viewer.",
     "type": "wordpress-plugin",
     "keywords": [
         "pdf",
-        "embed",
         "viewer",
         "oembed",
         "block"
