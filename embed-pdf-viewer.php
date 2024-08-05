@@ -14,7 +14,7 @@
  * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `iframe` tag.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           2.3.1.4
+ * Version:           2.3.1.5
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
