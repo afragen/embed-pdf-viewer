@@ -3,7 +3,7 @@ import icons from './icons.js';
 
 const { __ } = wp.i18n;
 const { registerBlockType, getBlockDefaultClassName } = wp.blocks;
-const { RichText, MediaPlaceholder, MediaUpload, InspectorControls, BlockControls, BlockAlignmentToolbar } = wp.blockEditor;
+const { RichText, MediaPlaceholder, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls, BlockAlignmentToolbar } = wp.blockEditor;
 const { Fragment } = wp.element;
 const { withNotices, Button, TextControl, TextareaControl, PanelBody, ToolbarGroup, ToolbarButton, ResizableBox } = wp.components;
 const { withState } = wp.compose;
@@ -15,32 +15,26 @@ const renderEmbed = (props) => {
 	const { attributes: { title, description, url, width, height, align } } = props;
 	const style = { width, height };
 	const myClassName = getBlockDefaultClassName('embed-pdf-viewer/pdf');
+	const isChrome = navigator && navigator?.userAgent && navigator.userAgent.toLowerCase().includes('chrome');
+	const classNames = "embed-pdf-viewer";
+	const src = isChrome && 'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true' || url;
 
 	if (undefined === url || !url) {
 		return null;
 	}
 
 	return (
-		<figure className={`${myClassName}__content-wrapper align${align}`}>
-			<object
-				className="embed-pdf-viewer"
-				data={url + '#scrollbar=1&toolbar=1'}
-				type="application/pdf"
-				height={style.height}
-				width={style.width}
-				title={description}
-			>
-			</object>
+		<div className={`${myClassName}__content-wrapper align${align}`}>
 			<iframe
-				className="embed-pdf-viewer"
-				src={'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true'}
-				frameBorder="0"
+				className={classNames}
+				src={src}
 				height={style.height}
 				width={style.width}
-				title={description}
+				title={title}
+				{...(isChrome && { frameBorder: "0" })}
 			>
 			</iframe>
-		</figure>
+		</div>
 	);
 };
 
@@ -134,7 +128,7 @@ const renderEdit = (props) => {
 					<div>
 						<TextareaControl
 							label={__('Long Description (optional)', 'embed-pdf-viewer')}
-							value={undefined === description ? '' : description}
+							value={undefined === title ? '' : title}
 							onChange={updateAttribute('description')}
 							help={__('Long Description used for `title` tag and accessibility.', 'embed-pdf-viewer')}
 						/>
@@ -172,18 +166,20 @@ const renderEdit = (props) => {
 						/>
 					)}
 					{!isExternal && (
-						<MediaUpload
-							onSelect={onSelectFile}
-							value={id}
-							render={({ open }) => (
-								<Button
-									className="components-toolbar__control"
-									label={__('Edit PDF', 'embed-pdf-viewer')}
-									onClick={open}
-									icon="edit"
-								/>
-							)}
-						/>
+						<MediaUploadCheck>
+							<MediaUpload
+								onSelect={onSelectFile}
+								value={id}
+								render={({ open }) => (
+									<Button
+										className="components-toolbar__control"
+										label={__('Edit PDF', 'embed-pdf-viewer')}
+										onClick={open}
+										icon="edit"
+									/>
+								)}
+							/>
+						</MediaUploadCheck>
 					)}
 				</ToolbarGroup>
 			</BlockControls>
@@ -258,5 +254,5 @@ let embedPDFViewer = registerBlockType('embed-pdf-viewer/pdf', {
 	},
 
 	edit: withNotices(withState({ isEditing: false, hasError: false })(renderEdit)),
-	save: renderEmbed,
+	// save: renderEmbed,
 });

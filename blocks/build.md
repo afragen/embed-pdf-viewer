@@ -8,6 +8,9 @@ Ensure that @wordpress/scripts are installed.
 Ensure that classnames is installed.
 * `npm install classnames --save`
 
+Use node 10.x
+`nvm use .`
+
 If `package.json` has the above dependencies then `npm install`
 
 `npm start` for testing.

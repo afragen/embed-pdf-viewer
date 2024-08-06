@@ -1,66 +1,71 @@
-# Copyright (C) 2021 Andy Fragen
+# Copyright (C) 2024 Andy Fragen
 # This file is distributed under the GPLv2+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Embed PDF Viewer 2.2.0\n"
+"Project-Id-Version: Embed PDF Viewer 2.4.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/embed-pdf-viewer\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-03-06T06:29:38+00:00\n"
+"POT-Creation-Date: 2024-08-06T16:39:15+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.5.0-alpha\n"
+"X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: embed-pdf-viewer\n"
 
 #. Plugin Name of the plugin
-#: blocks/src/index.js:133
+#: embed-pdf-viewer.php
+#: blocks/src/index.js:127
 msgid "Embed PDF Viewer"
 msgstr ""
 
 #. Plugin URI of the plugin
+#: embed-pdf-viewer.php
 msgid "https://github.com/afragen/embed-pdf-viewer"
 msgstr ""
 
 #. Description of the plugin
-msgid "Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `object` tag or Google Doc Viewer as fallback."
+#: embed-pdf-viewer.php
+msgid "Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `iframe` tag."
 msgstr ""
 
 #. Author of the plugin
+#: embed-pdf-viewer.php
 msgid "Andy Fragen"
 msgstr ""
 
 #. Author URI of the plugin
+#: embed-pdf-viewer.php
 msgid "https://github.com/afragen"
 msgstr ""
 
-#: blocks/src/index.js:84
-#: blocks/src/index.js:225
+#: blocks/src/index.js:78
+#: blocks/src/index.js:221
 msgid "PDF"
 msgstr ""
 
-#: blocks/src/index.js:85
+#: blocks/src/index.js:79
 msgid "Drag a PDF, upload a new one or select a PDF from your library."
 msgstr ""
 
-#: blocks/src/index.js:136
+#: blocks/src/index.js:130
 msgid "Long Description (optional)"
 msgstr ""
 
-#: blocks/src/index.js:139
+#: blocks/src/index.js:133
 msgid "Long Description used for `title` tag and accessibility."
 msgstr ""
 
-#: blocks/src/index.js:144
+#: blocks/src/index.js:138
 msgid "Width"
 msgstr ""
 
-#: blocks/src/index.js:150
+#: blocks/src/index.js:144
 msgid "Height"
 msgstr ""
 
-#: blocks/src/index.js:169
-#: blocks/src/index.js:181
+#: blocks/src/index.js:163
+#: blocks/src/index.js:176
 msgid "Edit PDF"
 msgstr ""

@@ -1,6 +1,6 @@
 # Embed PDF Viewer
 
-* Contributors: afragen, akirk
+* Contributors: afragen, akirk, costdev
 * Tags: pdf, embed, oembed, viewer, block
 * Requires at least: 4.6
 * Requires PHP: 5.6
@@ -8,10 +8,10 @@
 * License: GPL v2+
 * License URI: <https://www.gnu.org/licenses/gpl-2.0.html>
 
-Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `object` tag or Google Doc Viewer as fallback.
+Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `iframe` tag .
 
 ## Description
-Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `object` tag or Google Doc Viewer as fallback. The URL only has to be world reachable link.
+Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `iframe` tag. The URL only has to be world reachable link. Chrome uses Google Doc Viewer as Chrome seems to automatically rendered embedded JS in PDFs automatically. Uses Google Doc Viewer with mobile.
 
 Inspired by [Embed PDF](https://wordpress.org/plugins/dirtysuds-embed-pdf/) and [RV Embed PDF](https://wordpress.org/plugins/rv-embed-pdf/).
 

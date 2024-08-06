@@ -11,10 +11,10 @@
 /**
  * Plugin Name:       Embed PDF Viewer
  * Plugin URI:        https://github.com/afragen/embed-pdf-viewer
- * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `object` tag or Google Doc Viewer as fallback.
+ * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `iframe` tag.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           2.3.1
+ * Version:           2.4.0
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
@@ -31,18 +31,19 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-add_filter( 'media_send_to_editor', [ Embed_PDF_Viewer::instance(), 'embed_pdf_media_editor' ], 20, 2 );
+$epd_version = get_file_data( __FILE__, [ 'Version' => 'version' ] )['Version'];
+add_filter( 'media_send_to_editor', [ Embed_PDF_Viewer::instance( $epd_version ), 'embed_pdf_media_editor' ], 20, 2 );
 wp_embed_register_handler(
 	'oembed_pdf_viewer',
 	'#(^(https?)\:\/\/.+\.pdf$)#i',
 	[
-		Embed_PDF_Viewer::instance(),
+		Embed_PDF_Viewer::instance( $epd_version ),
 		'oembed_pdf_viewer',
 	]
 );
 add_action(
 	'init',
-	function () {
+	function () use ( $epd_version ) {
 		load_plugin_textdomain( 'embed-pdf-viewer' );
 		wp_set_script_translations( 'embed-pdf-viewer-scripts', 'embed-pdf-viewer' );
 
@@ -51,12 +52,12 @@ add_action(
 			'embed-pdf-viewer',
 			plugins_url( 'css/embed-pdf-viewer.css', __FILE__ ),
 			[],
-			false,
+			$epd_version,
 			'screen'
 		);
 	}
 );
-add_action( 'init', [ Embed_PDF_Viewer::instance(), 'register_block' ] );
+add_action( 'init', [ Embed_PDF_Viewer::instance( $epd_version ), 'register_block' ] );
 
 /**
  * Class Embed_PDF_Viewer
@@ -70,16 +71,25 @@ class Embed_PDF_Viewer {
 	private static $instance = false;
 
 	/**
+	 * Plugin version number.
+	 *
+	 * @var string
+	 */
+	private static $version = '';
+
+	/**
 	 * Create singleton.
 	 *
+	 * @param string $version Plugin version number.
 	 * @return bool
 	 */
-	public static function instance() {
-		if ( false === self::$instance ) {
-			self::$instance = new self();
+	public static function instance( $version ) {
+		static::$version = $version;
+		if ( false === static::$instance ) {
+			static::$instance = new self( $version );
 		}
 
-		return self::$instance;
+		return static::$instance;
 	}
 
 	/**
@@ -97,15 +107,46 @@ class Embed_PDF_Viewer {
 			'embed-pdf-viewer',
 			plugins_url( 'blocks/build/index.js', __FILE__ ),
 			[ 'wp-i18n', 'wp-blocks', 'wp-block-editor', 'wp-element', 'wp-components', 'wp-compose', 'wp-blob' ],
-			false,
+			static::$version,
 			true
 		);
 
 		register_block_type(
 			'embed-pdf-viewer/pdf',
 			[
-				'editor_script' => 'embed-pdf-viewer',
+				'editor_script'   => 'embed-pdf-viewer',
+				'render_callback' => [ static::$instance, 'dynamic_render_callback' ],
 			]
+		);
+	}
+
+	/**
+	 * Dynanically render callback based on browser.
+	 *
+	 * @global bool $is_chrome Tests for Chrome browser.
+	 *
+	 * @param array $attributes Array of attributes.
+	 *
+	 * @return string
+	 */
+	public function dynamic_render_callback( $attributes ) {
+		global $is_chrome;
+
+		$url = $attributes['url'] ?? null;
+		if ( ! $url ) {
+			return '';
+		}
+
+		$classes = 'embed-pdf-viewer';
+		$src     = $is_chrome || wp_is_mobile() ? 'https://docs.google.com/viewer?url=' . rawurlencode( $url ) . '&embedded=true' : $url;
+		return sprintf(
+			'<iframe class="%1$s" src="%2$s" height="%3$s" width="%4$s" title="%5$s"%6$s></iframe>',
+			$classes,
+			$src,
+			$attributes['width'] ?? '600',
+			$attributes['height'] ?? '600',
+			$attributes['title'] ?? '',
+			$is_chrome || wp_is_mobile() ? ' frameborder="0"' : ''
 		);
 	}
 
@@ -133,7 +174,7 @@ class Embed_PDF_Viewer {
 	 * @param array  $atts    array of media height/width.
 	 * @param string $url     URI for media file.
 	 *
-	 * @return string
+	 * @return string|WP_Error
 	 */
 	public function oembed_pdf_viewer( $matches, $atts, $url ) {
 		$attachment_id = $this->get_attachment_id_by_url( $url );
@@ -143,9 +184,13 @@ class Embed_PDF_Viewer {
 			/*
 			 * URL is from outside of the Media Library.
 			 */
+			$response = wp_remote_get( $url );
+			if ( is_wp_error( $response ) ) {
+				return $response;
+			}
 			$post                 = new WP_Post( new stdClass() );
 			$post->guid           = $matches[0];
-			$post->post_mime_type = 'application/pdf';
+			$post->post_mime_type = wp_remote_retrieve_header( $response, 'content-type' );
 			$post->post_name      = preg_replace( '/\.pdf$/', '', basename( $matches[0] ) );
 		}
 
@@ -162,6 +207,8 @@ class Embed_PDF_Viewer {
 	 * @return bool|string
 	 */
 	private function create_output( WP_Post $post, $atts = [] ) {
+		global $is_chrome;
+
 		if ( 'application/pdf' !== $post->post_mime_type ) {
 			return $atts;
 		}
@@ -178,8 +225,8 @@ class Embed_PDF_Viewer {
 		 */
 		$atts = is_array( $atts ) ? $atts : [];
 
-		if ( isset( $atts['height'] ) ) {
-			$atts['height'] = ( $atts['height'] / 2 );
+		if ( isset( $atts['width'] ) ) {
+			$atts['width'] = '100%';
 		}
 		$atts = array_merge( $default, $atts );
 
@@ -193,27 +240,23 @@ class Embed_PDF_Viewer {
 		$atts = apply_filters( 'embed_pdf_viewer_pdf_attributes', $atts );
 
 		// Fix title or create from filename.
-		$atts['title']       = empty( $atts['title'] )
+		$atts['title'] = empty( $atts['title'] )
 			? ucwords( preg_replace( '/(-|_)/', ' ', $post->post_name ) )
 			: ucwords( preg_replace( '/(-|_)/', ' ', $atts['title'] ) );
-		$atts['description'] = empty( $atts['description'] ) ? $atts['title'] : $atts['description'];
 
-		$iframe_fallback  = '<iframe class="embed-pdf-viewer" src="https://docs.google.com/viewer?url=' . rawurlencode( $post->guid );
-		$iframe_fallback .= '&amp;embedded=true" frameborder="0" ';
-		$iframe_fallback .= 'style="height:' . $atts['height'] . 'px;width:' . $atts['width'] . 'px;" ';
-		$iframe_fallback .= 'title="' . $atts['description'] . '"></iframe>' . "\n";
+		if ( $is_chrome || wp_is_mobile() ) {
+			$iframe  = '<iframe class="embed-pdf-viewer" src="https://docs.google.com/viewer?url=' . rawurlencode( $post->guid );
+			$iframe .= '&amp;embedded=true" frameborder="0" ';
+		} else {
+			$iframe = '<iframe class="embed-pdf-viewer" src="' . $post->guid . '" ';
+		}
+		$iframe .= 'height="' . $atts['height'] . '" width="' . $atts['width'] . '" ';
+		$iframe .= 'title="' . $atts['title'] . '"></iframe>' . "\n";
 
-		$object  = '<object class="embed-pdf-viewer" data="' . $post->guid;
-		$object .= '#scrollbar=1&toolbar=1"';
-		$object .= 'type="application/pdf" ';
-		$object .= 'height=' . $atts['height'] . ' width=' . $atts['width'] . ' ';
-		$object .= 'title="' . $atts['description'] . '"> ';
-		$object .= '</object>';
-
-		$embed  = '<figure>';
-		$embed .= $object . $iframe_fallback;
-		$embed .= '<p><a href="' . $post->guid . '" title="' . $atts['description'] . '">' . $atts['title'] . '</a></p>';
-		$embed .= '</figure>';
+		$embed  = '<div>';
+		$embed .= $iframe;
+		$embed .= '<p><a href="' . $post->guid . '" title="' . $atts['title'] . '">' . $atts['title'] . '</a></p>';
+		$embed .= '</div>';
 
 		return $embed;
 	}
