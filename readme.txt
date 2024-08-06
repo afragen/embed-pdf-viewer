@@ -28,7 +28,8 @@ Development on [GitHub](https://github.com/afragen/embed-pdf-viewer). Pull reque
 ## Changelog
 
 #### 2.4.0 / 2024-08-06
-* convert to only use `iframe` and use Google Doc Viewer for Chrome and mobile
+* convert to only use `iframe`
+* use Google Doc Viewer for Chrome and mobile
 * dynamically render `iframe` in block based on browser
 * mitigate [Chromium issue](https://issues.chromium.org/issues/40063550) by rendering PDF with Google Doc Viewer
 * thanks to @costdev for helping with dynamic block rendering
