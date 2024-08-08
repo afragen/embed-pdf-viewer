@@ -14,7 +14,7 @@
  * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `iframe` tag.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           2.4.1
+ * Version:           2.4.2
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
@@ -145,7 +145,7 @@ class Embed_PDF_Viewer {
 			sanitize_url( $src ),
 			$attributes['width'] ?? '600',
 			$attributes['height'] ?? '600',
-			$attributes['title'] ?? '',
+			$attributes['description'] ?? $attributes['title'],
 			$is_chrome || wp_is_mobile() ? ' frameborder="0"' : ''
 		);
 	}
@@ -244,6 +244,7 @@ class Embed_PDF_Viewer {
 			? ucwords( preg_replace( '/(-|_)/', ' ', $post->post_name ) )
 			: ucwords( preg_replace( '/(-|_)/', ' ', $atts['title'] ) );
 
+		$description   = ! empty( $atts['description'] ) ? $atts['description'] : $atts['title'];
 		$sanitized_url = sanitize_url( $post->guid );
 
 		if ( $is_chrome || wp_is_mobile() ) {
@@ -253,11 +254,11 @@ class Embed_PDF_Viewer {
 			$iframe = '<iframe class="embed-pdf-viewer" src="' . $sanitized_url . '" ';
 		}
 		$iframe .= 'height="' . $atts['height'] . '" width="' . $atts['width'] . '" ';
-		$iframe .= 'title="' . $atts['title'] . '"></iframe>' . "\n";
+		$iframe .= 'title="' . $description . '"></iframe>' . "\n";
 
 		$embed  = '<div>';
 		$embed .= $iframe;
-		$embed .= '<p><a href="' . $sanitized_url . '" title="' . $atts['title'] . '">' . $atts['title'] . '</a></p>';
+		$embed .= '<p><a href="' . $sanitized_url . '" title="' . $description . '">' . $description . '</a></p>';
 		$embed .= '</div>';
 
 		return $embed;
