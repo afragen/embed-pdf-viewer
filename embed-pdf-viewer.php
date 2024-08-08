@@ -198,7 +198,7 @@ class Embed_PDF_Viewer {
 	}
 
 	/**
-	 * Create output for Google Doc Viewer and href link to file.
+	 * Create output for iframe and/or Google Doc Viewer and href link to file.
 	 *
 	 * @param \WP_Post     $post Current post.
 	 * @param array|string $atts array of media height/width or
