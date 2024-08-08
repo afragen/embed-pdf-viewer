@@ -121,7 +121,7 @@ class Embed_PDF_Viewer {
 	}
 
 	/**
-	 * Dynanically render callback based on browser.
+	 * Dynamically render callback based on browser.
 	 *
 	 * @global bool $is_chrome Tests for Chrome browser.
 	 *
