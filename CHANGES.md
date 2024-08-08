@@ -1,4 +1,5 @@
 #### [unreleased]
+* escape description in render
 
 #### 2.4.2 / 2024-08-08
 * use media file description for title if present
