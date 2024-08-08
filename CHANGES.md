@@ -1,5 +1,7 @@
 #### [unreleased]
-* use media file description for iframe title if present
+
+#### 2.4.2 / 2024-08-08
+* use media file description for title if present
 
 #### 2.4.1 / 2024-08-08
 * more sanitizing of URL
