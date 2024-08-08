@@ -1,11 +1,10 @@
 #### [unreleased]
 
-#### 2.4.2 / 2024-08-08
-* use media file description for title if present
-
-#### 2.4.1 / 2024-08-08
+#### 2.4.1 - 2.4.3 / 2024-08-08
 * more sanitizing of URL
 * fix typos and update readme
+* use media file description for title if present
+* escape description in render
 
 #### 2.4.0 / 2024-08-06
 * convert to only use `iframe`
