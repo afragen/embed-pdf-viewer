@@ -5,7 +5,7 @@ Tags: pdf, embed, oembed, viewer, block
 Requires at least: 4.6
 Tested up to: 6.6
 Requires PHP: 5.6
-Stable tag: 2.4.0
+Stable tag: 2.4.1
 License: GPL v2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,10 @@ Occasionally Google Doc Viewer will not correctly load the PDF. Reloading the pa
 3. PDF block and attributes
 
 ## Changelog
+
+#### 2.4.1 / 2024-08-08
+* more sanitizing of URL
+* fix typos and update readme
 
 #### 2.4.0 / 2024-08-06
 * convert to only use `iframe`

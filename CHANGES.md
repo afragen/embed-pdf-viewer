@@ -1,5 +1,8 @@
 #### [unreleased]
+
+#### 2.4.1 / 2024-08-08
 * more sanitizing of URL
+* fix typos and update readme
 
 #### 2.4.0 / 2024-08-06
 * convert to only use `iframe`
