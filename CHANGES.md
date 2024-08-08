@@ -1,4 +1,5 @@
 #### [unreleased]
+* more sanitizing of URL
 
 #### 2.4.0 / 2024-08-06
 * convert to only use `iframe`

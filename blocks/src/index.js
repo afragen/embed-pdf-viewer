@@ -17,7 +17,7 @@ const renderEmbed = (props) => {
 	const myClassName = getBlockDefaultClassName('embed-pdf-viewer/pdf');
 	const isChrome = navigator && navigator?.userAgent && navigator.userAgent.toLowerCase().includes('chrome');
 	const classNames = "embed-pdf-viewer";
-	const src = isChrome && 'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true' || url;
+	const src = isChrome && 'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true' || encodeURI(url);
 
 	if (undefined === url || !url) {
 		return null;
