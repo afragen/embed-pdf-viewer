@@ -5,7 +5,7 @@ Tags: pdf, embed, oembed, viewer, block
 Requires at least: 4.6
 Tested up to: 6.6
 Requires PHP: 5.6
-Stable tag: 2.4.0
+Stable tag: 2.4.1
 License: GPL v2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,12 +20,19 @@ Many thanks to [Alex Kirk](https://github.com/akirk) for making Embed PDF Viewer
 
 Development on [GitHub](https://github.com/afragen/embed-pdf-viewer). Pull requests are welcome against the `develop` branch.
 
+### Known Issues
+Occasionally Google Doc Viewer will not correctly load the PDF. Reloading the page should correct the issue, though this may need to be done several times.
+
 ## Screenshots
 1. Embed PDF Viewer block
 2. Select PDF
 3. PDF block and attributes
 
 ## Changelog
+
+#### 2.4.1 / 2024-08-08
+* more sanitizing of URL
+* fix typos and update readme
 
 #### 2.4.0 / 2024-08-06
 * convert to only use `iframe`

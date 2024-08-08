@@ -14,7 +14,7 @@
  * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `iframe` tag.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           2.4.0
+ * Version:           2.4.1
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
@@ -121,7 +121,7 @@ class Embed_PDF_Viewer {
 	}
 
 	/**
-	 * Dynanically render callback based on browser.
+	 * Dynamically render callback based on browser.
 	 *
 	 * @global bool $is_chrome Tests for Chrome browser.
 	 *
@@ -142,7 +142,7 @@ class Embed_PDF_Viewer {
 		return sprintf(
 			'<iframe class="%1$s" src="%2$s" height="%3$s" width="%4$s" title="%5$s"%6$s></iframe>',
 			$classes,
-			$src,
+			sanitize_url( $src ),
 			$attributes['width'] ?? '600',
 			$attributes['height'] ?? '600',
 			$attributes['title'] ?? '',
@@ -198,7 +198,7 @@ class Embed_PDF_Viewer {
 	}
 
 	/**
-	 * Create output for Google Doc Viewer and href link to file.
+	 * Create output for iframe and/or Google Doc Viewer and href link to file.
 	 *
 	 * @param \WP_Post     $post Current post.
 	 * @param array|string $atts array of media height/width or
@@ -244,18 +244,20 @@ class Embed_PDF_Viewer {
 			? ucwords( preg_replace( '/(-|_)/', ' ', $post->post_name ) )
 			: ucwords( preg_replace( '/(-|_)/', ' ', $atts['title'] ) );
 
+		$sanitized_url = sanitize_url( $post->guid );
+
 		if ( $is_chrome || wp_is_mobile() ) {
-			$iframe  = '<iframe class="embed-pdf-viewer" src="https://docs.google.com/viewer?url=' . rawurlencode( $post->guid );
+			$iframe  = '<iframe class="embed-pdf-viewer" src="https://docs.google.com/viewer?url=' . rawurlencode( $sanitized_url );
 			$iframe .= '&amp;embedded=true" frameborder="0" ';
 		} else {
-			$iframe = '<iframe class="embed-pdf-viewer" src="' . $post->guid . '" ';
+			$iframe = '<iframe class="embed-pdf-viewer" src="' . $sanitized_url . '" ';
 		}
 		$iframe .= 'height="' . $atts['height'] . '" width="' . $atts['width'] . '" ';
 		$iframe .= 'title="' . $atts['title'] . '"></iframe>' . "\n";
 
 		$embed  = '<div>';
 		$embed .= $iframe;
-		$embed .= '<p><a href="' . $post->guid . '" title="' . $atts['title'] . '">' . $atts['title'] . '</a></p>';
+		$embed .= '<p><a href="' . $sanitized_url . '" title="' . $atts['title'] . '">' . $atts['title'] . '</a></p>';
 		$embed .= '</div>';
 
 		return $embed;

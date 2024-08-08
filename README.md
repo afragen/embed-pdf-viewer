@@ -19,6 +19,9 @@ Many thanks to [Alex Kirk](https://github.com/akirk) for making Embed PDF Viewer
 
 Pull requests are welcome against the `develop` branch.
 
+### Known Issues
+Occasionally Google Doc Viewer will not correctly load the PDF. Reloading the page should correct the issue, though this may need to be done several times.
+
 ## Screenshots
 ![Embed PDF Viewer block](./.wordpress-org/screenshot-1.png "Embed PDF Viewer block")
 
