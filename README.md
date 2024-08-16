@@ -2,13 +2,13 @@
 
 * Contributors: afragen, akirk, costdev
 * Tags: pdf, embed, oembed, viewer, block
-* Requires at least: 4.6
-* Requires PHP: 5.6
+* Requires at least: 6.0
+* Requires PHP: 7.4
 * Stable tag: master
 * License: GPL v2+
 * License URI: <https://www.gnu.org/licenses/gpl-2.0.html>
 
-Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `iframe` tag .
+Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `iframe` tag.
 
 ## Description
 Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `iframe` tag. The URL only has to be world reachable link. Chrome uses Google Doc Viewer as Chrome seems to automatically rendered embedded JS in PDFs automatically. Uses Google Doc Viewer with mobile.
