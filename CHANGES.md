@@ -1,4 +1,5 @@
 #### [unreleased]
+* refactor `$description` in `dynamic_render_callback()`, who knew the title attribute could be not set
 
 #### 2.4.1 - 2.4.3 / 2024-08-08
 * more sanitizing of URL
