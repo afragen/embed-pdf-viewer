@@ -1,5 +1,8 @@
 #### [unreleased]
 
+#### 2.4.5 / 2024-10-7
+* escape block parameters
+
 #### 2.4.4 / 2024-08-16
 * refactor `$description` in `dynamic_render_callback()`, who knew the title attribute could be not set
 * update requirements, PHP 7.4+, WP 6.0
