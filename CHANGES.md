@@ -1,5 +1,8 @@
 #### [unreleased]
 
+#### 2.4.6 / 2024-11-01
+* remove `load_plugin_textdomain()`
+
 #### 2.4.5 / 2024-10-7
 * escape block parameters
 
