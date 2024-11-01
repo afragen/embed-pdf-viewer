@@ -44,7 +44,6 @@ wp_embed_register_handler(
 add_action(
 	'init',
 	function () use ( $epd_version ) {
-		load_plugin_textdomain( 'embed-pdf-viewer' );
 		wp_set_script_translations( 'embed-pdf-viewer-scripts', 'embed-pdf-viewer' );
 
 		// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NoExplicitVersion
