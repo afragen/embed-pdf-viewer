@@ -33,18 +33,14 @@
     },
     "require-dev": {
         "wp-coding-standards/wpcs": "^3.0.0"
-      },
-      "config": {
+    },
+    "config": {
         "allow-plugins": {
-          "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
-      },
-        "scripts": {
-        "make-pot": [
-            "wp i18n make-pot . languages/embed-pdf-viewer.pot --exclude='/build'"
-        ],
-        "wpcs": [
-            "vendor/bin/phpcbf .; vendor/bin/phpcs ."
-        ]
+    },
+    "scripts": {
+        "lint": "@php ./vendor/bin/phpcs .",
+        "format": "@php ./vendor/bin/phpcbf ."
     }
 }
