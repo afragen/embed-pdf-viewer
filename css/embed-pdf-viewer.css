@@ -7,5 +7,6 @@ iframe.embed-pdf-viewer {
 @media only screen and (max-device-width : 768px) {
 	iframe.embed-pdf-viewer {
 		width: 100%;
+		max-height: 500px;
 	}
 }
