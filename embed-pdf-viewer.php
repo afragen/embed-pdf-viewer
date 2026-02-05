@@ -14,7 +14,7 @@
  * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `iframe` tag.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           2.4.6
+ * Version:           2.4.7
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
@@ -180,6 +180,11 @@ class Embed_PDF_Viewer {
 	 * @return string|WP_Error
 	 */
 	public function oembed_pdf_viewer( $matches, $atts, $url ) {
+		// Validate URL before proceeding.
+		if ( ! filter_var( $url, FILTER_VALIDATE_URL ) ) {
+			return new WP_Error( 'invalid_url', __( 'The URL provided is not valid.', 'embed-pdf-viewer' ) );
+		}
+
 		$attachment_id = $this->get_attachment_id_by_url( $url );
 		if ( ! empty( $attachment_id ) ) {
 			$post = get_post( $this->get_attachment_id_by_url( $url ) );
