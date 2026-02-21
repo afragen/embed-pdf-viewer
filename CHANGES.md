@@ -1,5 +1,8 @@
 #### [unreleased]
 
+#### 2.4.8 / 2025-02-21
+* use `wp_safe_remote_get()`
+
 #### 2.4.7 / 2025-02-05
 * validate destination URL
 * add `max-height: 500px;` to PDF display
