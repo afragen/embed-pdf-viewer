@@ -146,8 +146,8 @@ class Embed_PDF_Viewer {
 			'<iframe class="%1$s" src="%2$s" height="%3$s" width="%4$s" title="%5$s"%6$s></iframe>',
 			$classes,
 			sanitize_url( $src ),
-			esc_attr( $width ),
 			esc_attr( $height ),
+			esc_attr( $width ),
 			esc_attr( $description ),
 			$is_chrome || wp_is_mobile() ? ' frameborder="0"' : ''
 		);
