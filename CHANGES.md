@@ -1,5 +1,12 @@
 #### [unreleased]
 
+#### 2.5.0 / 2026-08-12
+* modernize block to current Gutenberg standards (block.json, useBlockProps, block-scoped CSS)
+* update build tooling to @wordpress/scripts 32 and Node 20, build in CI
+* fix JS translations, load styles only when block or oEmbed is present
+* use `attachment_url_to_postid()` instead of direct `$wpdb` query
+* add phpcs ruleset and lint CI
+
 #### 2.4.8 / 2025-02-21
 * use `wp_safe_remote_get()`
 

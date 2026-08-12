@@ -1,18 +1,26 @@
 {
   "name": "embed-pdf-viewer",
   "description": "Block for embedding PDF documents.",
-  "version": "0.2.0",
+  "version": "2.5.0",
   "license": "GPL-2.0-or-later",
-  "main": "./src/index.js",
   "devDependencies": {
-    "@wordpress/scripts": "12.1.1"
+    "@wordpress/blob": "4.50.0",
+    "@wordpress/block-editor": "15.23.0",
+    "@wordpress/blocks": "15.23.0",
+    "@wordpress/components": "36.1.0",
+    "@wordpress/data": "10.50.0",
+    "@wordpress/element": "8.2.0",
+    "@wordpress/i18n": "6.23.0",
+    "@wordpress/icons": "15.1.0",
+    "@wordpress/notices": "5.53.0",
+    "@wordpress/scripts": "32.6.0"
   },
   "scripts": {
     "build": "wp-scripts build",
-    "start": "wp-scripts start"
+    "start": "wp-scripts start",
+    "lint:js": "wp-scripts lint-js src"
   },
-  "dependencies": {
-    "build": "^0.1.4",
-    "classnames": "^2.2.6"
+  "engines": {
+    "node": ">=20"
   }
 }

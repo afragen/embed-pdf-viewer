@@ -5,7 +5,4 @@
 composer.lock export-ignore
 /.wordpress-org export-ignore
 /.github export-ignore
-/blocks/.babelrc export-ignore
-/blocks/.gitignore export-ignore
-/blocks/webpack.config.js export-ignore
 /blocks/package-lock.json export-ignore

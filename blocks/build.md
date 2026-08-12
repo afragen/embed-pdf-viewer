@@ -1,23 +1,28 @@
-# Block build Instructions
+# Block build instructions
 
-https://developer.wordpress.org/block-editor/tutorials/javascript/js-build-setup/
+The block uses `@wordpress/scripts` (wp-scripts) with a standard webpack setup. Node 20+ is required (see `.nvmrc`).
 
-Ensure that @wordpress/scripts are installed.
-* `npm install @wordpress/scripts --save-dev --save-exact`
+## Setup
 
-Ensure that classnames is installed.
-* `npm install classnames --save`
+```bash
+nvm use          # or: nvm use 20
+npm ci           # installs the exact deps pinned in package-lock.json
+```
 
-Use node 10.x
-`nvm use .`
+## Build
 
-If `package.json` has the above dependencies then `npm install`
+```bash
+npm run build    # one-time production build → blocks/build/
+```
 
-`npm start` for testing.
+`npm start` runs webpack in watch mode — every save to `blocks/src/` rebuilds `blocks/build/` automatically for local development.
 
-`npm run build`
+## Local testing
 
+`blocks/build/` is **gitignored** — a fresh checkout has no built assets, so run `npm run build` once before testing the plugin in a local WordPress install (symlink `wp-content/plugins/embed-pdf-viewer` → this checkout). CI rebuilds from source for releases (`deploy.yml`), so build output is disposable locally; deleting it and re-running `npm run build` is always safe.
 
-## Add custom SVG icon
+## Lint
 
-https://since1979.dev/wordpress-adding-custom-svg-icons-to-your-gutenberg-blocks-plugin/
+```bash
+npm run lint:js  # eslint on blocks/src
+```
