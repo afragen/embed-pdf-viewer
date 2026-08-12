@@ -1,5 +1,8 @@
 #### [unreleased]
 
+#### 2.5.1 / 2026-08-12
+* add `.distignore` for deployment
+
 #### 2.5.0 / 2026-08-12
 * modernize block to current Gutenberg standards (block.json, useBlockProps, block-scoped CSS)
 * update build tooling to @wordpress/scripts 32 and Node 20, build in CI
