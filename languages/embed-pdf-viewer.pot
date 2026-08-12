@@ -2,21 +2,21 @@
 # This file is distributed under the GPLv2+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Embed PDF Viewer 2.4.8\n"
+"Project-Id-Version: Embed PDF Viewer 2.5.0\n"
 "Report-Msgid-Bugs-To: https://github.com/afragen/embed-pdf-viewer/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-02-21T16:57:42+00:00\n"
+"POT-Creation-Date: 2026-08-12T19:32:39+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: embed-pdf-viewer\n"
 
 #. Plugin Name of the plugin
 #: embed-pdf-viewer.php
-#: blocks/src/index.js:127
+#: blocks/src/index.js:151
 msgid "Embed PDF Viewer"
 msgstr ""
 
@@ -40,32 +40,56 @@ msgstr ""
 msgid "https://github.com/afragen"
 msgstr ""
 
-#: blocks/src/index.js:78
-#: blocks/src/index.js:221
+#: blocks/src/index.js:109
 msgid "PDF"
 msgstr ""
 
-#: blocks/src/index.js:79
+#: blocks/src/index.js:110
 msgid "Drag a PDF, upload a new one or select a PDF from your library."
 msgstr ""
 
-#: blocks/src/index.js:130
+#: blocks/src/index.js:155
 msgid "Long Description (optional)"
 msgstr ""
 
-#: blocks/src/index.js:133
+#: blocks/src/index.js:163
 msgid "Long Description used for `title` tag and accessibility."
 msgstr ""
 
-#: blocks/src/index.js:138
+#: blocks/src/index.js:171
 msgid "Width"
 msgstr ""
 
-#: blocks/src/index.js:144
+#: blocks/src/index.js:177
 msgid "Height"
 msgstr ""
 
-#: blocks/src/index.js:163
-#: blocks/src/index.js:176
+#: blocks/src/index.js:188
+#: blocks/src/index.js:200
 msgid "Edit PDF"
+msgstr ""
+
+#: blocks/block.json
+msgctxt "block title"
+msgid "PDF"
+msgstr ""
+
+#: blocks/block.json
+msgctxt "block description"
+msgid "Embed a PDF from the Media Library or elsewhere into an iframe."
+msgstr ""
+
+#: blocks/block.json
+msgctxt "block keyword"
+msgid "pdf"
+msgstr ""
+
+#: blocks/block.json
+msgctxt "block keyword"
+msgid "embed"
+msgstr ""
+
+#: blocks/block.json
+msgctxt "block keyword"
+msgid "viewer"
 msgstr ""
