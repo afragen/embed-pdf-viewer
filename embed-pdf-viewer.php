@@ -14,7 +14,7 @@
  * Description:       Embed a PDF from the Media Library or elsewhere via oEmbed or as a block into an `iframe` tag.
  * Author:            Andy Fragen
  * Author URI:        https://github.com/afragen
- * Version:           2.4.8
+ * Version:           2.5.0
  * License:           GPLv2+
  * Domain Path:       /languages
  * Text Domain:       embed-pdf-viewer
@@ -27,7 +27,7 @@
 /**
  * Exit if called directly.
  */
-if ( ! defined( 'WPINC' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
@@ -40,21 +40,6 @@ wp_embed_register_handler(
 		Embed_PDF_Viewer::instance( $epd_version ),
 		'oembed_pdf_viewer',
 	]
-);
-add_action(
-	'init',
-	function () use ( $epd_version ) {
-		wp_set_script_translations( 'embed-pdf-viewer-scripts', 'embed-pdf-viewer' );
-
-		// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NoExplicitVersion
-		wp_enqueue_style(
-			'embed-pdf-viewer',
-			plugins_url( 'css/embed-pdf-viewer.css', __FILE__ ),
-			[],
-			$epd_version,
-			'screen'
-		);
-	}
 );
 add_action( 'init', [ Embed_PDF_Viewer::instance( $epd_version ), 'register_block' ] );
 
@@ -97,25 +82,9 @@ class Embed_PDF_Viewer {
 	 * @return void
 	 */
 	public function register_block() {
-		if ( ! function_exists( 'register_block_type' ) ) {
-			return;
-		}
-
-		// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NoExplicitVersion
-		wp_register_script(
-			'embed-pdf-viewer',
-			plugins_url( 'blocks/build/index.js', __FILE__ ),
-			[ 'wp-i18n', 'wp-blocks', 'wp-block-editor', 'wp-element', 'wp-components', 'wp-compose', 'wp-blob' ],
-			static::$version,
-			true
-		);
-
 		register_block_type(
-			'embed-pdf-viewer/pdf',
-			[
-				'editor_script'   => 'embed-pdf-viewer',
-				'render_callback' => [ static::$instance, 'dynamic_render_callback' ],
-			]
+			__DIR__ . '/blocks/block.json',
+			[ 'render_callback' => [ static::$instance, 'dynamic_render_callback' ] ]
 		);
 	}
 
@@ -142,7 +111,7 @@ class Embed_PDF_Viewer {
 		$description = $attributes['description'] ?? $description;
 		$width       = $attributes['width'] ?? '600';
 		$height      = $attributes['height'] ?? '600';
-		return sprintf(
+		$iframe      = sprintf(
 			'<iframe class="%1$s" src="%2$s" height="%3$s" width="%4$s" title="%5$s"%6$s></iframe>',
 			$classes,
 			sanitize_url( $src ),
@@ -151,6 +120,8 @@ class Embed_PDF_Viewer {
 			esc_attr( $description ),
 			$is_chrome || wp_is_mobile() ? ' frameborder="0"' : ''
 		);
+		$wrapper     = get_block_wrapper_attributes( [ 'class' => 'embed-pdf-viewer-wrapper' ] );
+		return sprintf( '<div %1$s>%2$s</div>', $wrapper, $iframe );
 	}
 
 	/**
@@ -182,7 +153,7 @@ class Embed_PDF_Viewer {
 	public function oembed_pdf_viewer( $matches, $atts, $url ) {
 		$attachment_id = $this->get_attachment_id_by_url( $url );
 		if ( ! empty( $attachment_id ) ) {
-			$post = get_post( $this->get_attachment_id_by_url( $url ) );
+			$post = get_post( $attachment_id );
 		} else {
 			/*
 			 * URL is from outside of the Media Library.
@@ -196,6 +167,13 @@ class Embed_PDF_Viewer {
 			$post->post_mime_type = wp_remote_retrieve_header( $response, 'content-type' );
 			$post->post_name      = preg_replace( '/\.pdf$/', '', basename( $matches[0] ) );
 		}
+
+		wp_enqueue_style(
+			'embed-pdf-viewer',
+			plugins_url( 'blocks/build/style-index.css', __FILE__ ),
+			[],
+			static::$version
+		);
 
 		return $this->create_output( $post, $atts );
 	}
@@ -268,23 +246,15 @@ class Embed_PDF_Viewer {
 	}
 
 	/**
-	 * Get attachment id by url. Thanks Pippin.
-	 *
-	 * @link  https://pippinsplugins.com/retrieve-attachment-id-from-image-url/
+	 * Get attachment id by url.
 	 *
 	 * @param string $url URI of attachment.
 	 *
-	 * @return mixed
+	 * @return int|null
 	 */
 	private function get_attachment_id_by_url( $url ) {
-		global $wpdb;
-		// phpcs:ignore WordPress.DB
-		$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid='%s';", $url ) );
+		$attachment = attachment_url_to_postid( $url );
 
-		if ( empty( $attachment ) ) {
-			return null;
-		}
-
-		return $attachment[0];
+		return empty( $attachment ) ? null : $attachment;
 	}
 }

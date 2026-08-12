@@ -3,9 +3,9 @@
 Contributors: afragen, akirk, costdev
 Tags: pdf, embed, oembed, viewer, block
 Requires at least: 6.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.4.8
+Stable tag: 2.5.0
 License: GPL v2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,13 @@ Occasionally Google Doc Viewer will not correctly load the PDF. Reloading the pa
 3. PDF block and attributes
 
 ## Changelog
+
+#### 2.5.0 / 2026-08-12
+* modernize block to current Gutenberg standards (block.json, useBlockProps, block-scoped CSS)
+* update build tooling to @wordpress/scripts 32 and Node 20, build in CI
+* fix JS translations, load styles only when block or oEmbed is present
+* use `attachment_url_to_postid()` instead of direct `$wpdb` query
+* add phpcs ruleset and lint CI
 
 #### 2.4.8 / 2025-02-21
 * use `wp_safe_remote_get()`

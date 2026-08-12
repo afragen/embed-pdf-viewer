@@ -19,6 +19,20 @@ Many thanks to [Alex Kirk](https://github.com/akirk) for making Embed PDF Viewer
 
 Pull requests are welcome against the `develop` branch.
 
+### Development
+
+The block is built from source in `blocks/` with `@wordpress/scripts` (Node 20+). `blocks/build/` is gitignored — a fresh checkout has no built assets, so build once locally before testing:
+
+```bash
+cd blocks
+nvm use           # or: nvm use 20
+npm ci
+npm run build     # one-time build → blocks/build/
+# or: npm start   # watch mode for development
+```
+
+Then symlink (or copy) the plugin into a local WordPress install, e.g. `wp-content/plugins/embed-pdf-viewer` → this checkout. CI rebuilds from source for releases, so build output is disposable locally.
+
 ### Known Issues
 Occasionally Google Doc Viewer will not correctly load the PDF. Reloading the page should correct the issue, though this may need to be done several times.
 

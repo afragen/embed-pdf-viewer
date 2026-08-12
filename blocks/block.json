@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "embed-pdf-viewer/pdf",
+	"version": "2.5.0",
+	"title": "PDF",
+	"description": "Embed a PDF from the Media Library or elsewhere into an iframe.",
+	"category": "embed",
+	"keywords": [ "pdf", "embed", "viewer" ],
+	"textdomain": "embed-pdf-viewer",
+	"attributes": {
+		"id": { "type": "number" },
+		"title": { "type": "string" },
+		"description": { "type": "string", "default": "" },
+		"url": { "type": "string" },
+		"width": { "type": "string", "default": "600" },
+		"height": { "type": "string", "default": "600" },
+		"align": { "type": "string", "default": "center" }
+	},
+	"supports": {
+		"align": [ "left", "center", "right" ],
+		"html": false
+	},
+	"editorScript": "file:./build/index.js",
+	"style": "file:./build/style-index.css"
+}

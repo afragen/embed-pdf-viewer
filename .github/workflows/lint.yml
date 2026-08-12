@@ -1,0 +1,40 @@
+name: Lint
+on:
+  push:
+    branches:
+    - develop
+  pull_request:
+    branches:
+    - develop
+jobs:
+  php:
+    name: PHP
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v7
+    - uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+    - name: Install dependencies
+      run: composer install
+    - name: PHPCS
+      run: composer lint
+  js:
+    name: JavaScript
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v7
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: npm
+        cache-dependency-path: blocks/package-lock.json
+    - name: Install dependencies
+      working-directory: blocks
+      run: npm ci
+    - name: Build
+      working-directory: blocks
+      run: npm run build
+    - name: ESLint
+      working-directory: blocks
+      run: npm run lint:js
