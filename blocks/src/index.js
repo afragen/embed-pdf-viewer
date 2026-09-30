@@ -40,8 +40,8 @@ const renderEmbed = ( props ) => {
 		navigator.userAgent.toLowerCase().includes( 'chrome' );
 	const src = isChrome
 		? 'https://docs.google.com/viewer?url=' +
-		  encodeURIComponent( url ) +
-		  '&embedded=true'
+			encodeURIComponent( url ) +
+			'&embedded=true'
 		: encodeURI( url );
 
 	if ( ! url ) {
