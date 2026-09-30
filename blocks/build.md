@@ -5,7 +5,7 @@ The block uses `@wordpress/scripts` (wp-scripts) with a standard webpack setup. 
 ## Setup
 
 ```bash
-nvm use          # or: nvm use 20
+nvm use          # or: nvm use 24
 npm ci           # installs the exact deps pinned in package-lock.json
 ```
 

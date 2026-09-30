@@ -21,6 +21,6 @@
     "lint:js": "wp-scripts lint-js src"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   }
 }
